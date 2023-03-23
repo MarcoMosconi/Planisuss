@@ -4,6 +4,7 @@ from constants import NUMDAYS
 from phases.growing import growing
 import matplotlib.pyplot as plt
 
+
 totalDays = []
 totalDensities = []
 

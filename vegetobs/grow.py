@@ -1,11 +1,14 @@
-from vegetobs.setup import vegetobs
+#function grow for which all densities continously grow 
+
+from setup import vegetobs
 
 def grow():
 
     totalDensity = 0
     
-    for key in vegetobs:
-        vegetobs[key].grow()
-        totalDensity += vegetobs[key].getDensity()
+    for cellname in vegetobs:
+        vegetobs[cellname].grows()
+        totalDensity += vegetobs[cellname].getDensity()
+
     return totalDensity
 
