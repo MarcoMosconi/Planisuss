@@ -1,6 +1,10 @@
 #function grow for which all densities continously grow 
 
-from setup import vegetobs
+import sys
+
+sys.path[0] = "c:\\Users\\marco\\OneDrive\\Desktop\\Planisuss\\"
+
+from vegetobs.setup import vegetobs
 
 def grow():
 
