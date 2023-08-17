@@ -1,8 +1,11 @@
 #function grow for which all densities continously grow 
 
 import sys
+import os
 
-sys.path[0] = "c:\\Users\\marco\\OneDrive\\Desktop\\Planisuss\\"
+current_dir = os.path.dirname(__file__)
+parent_dir = os.path.abspath(os.path.join(current_dir, ".."))
+sys.path.append(parent_dir)
 
 from vegetobs.setup import vegetobs
 

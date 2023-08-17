@@ -1,8 +1,11 @@
 #Erbast Class
 
 import sys
+import os
 
-sys.path[0] = "c:\\Users\\marco\\OneDrive\\Desktop\\Planisuss\\"
+current_dir = os.path.dirname(__file__)
+parent_dir = os.path.abspath(os.path.join(current_dir, ".."))
+sys.path.append(parent_dir)
 
 import random
 from constants import MAX_ENERGY, MAX_LIFE
@@ -35,18 +38,5 @@ class Erbast:
         return self.age == self.lifetime 
             
 
-    # def grows(self):
-    #     self.age += 1
-    #     if self.age == self.lifetime:
-    #          self.dead = True
-    #          for cellname in erbasts:
-    #             erbasts[cellname] = None
-
-    # def moves(self):
-    #     self.energy -= 1
-    #     if self.density <= 0:
-    #         self.dead = True
-    #         for cellname in erbasts:
-    #             erbasts[cellname] = None
 
     

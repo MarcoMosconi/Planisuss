@@ -1,13 +1,16 @@
 #Cell class
 
 import sys
+import os
 
-sys.path[0] = "c:\\Users\\marco\\OneDrive\\Desktop\\Planisuss\\"
+current_dir = os.path.dirname(__file__)
+parent_dir = os.path.abspath(os.path.join(current_dir, ".."))
+sys.path.append(parent_dir)
 
 import random
-import constants
+from constants import NUMCELLS, CELL_PROBABILITY
 
-TYPES = ["Water", "Ground"]
+#TYPES = ["Water", "Ground"]
 
 class Cell:
     def __init__(self, x, y): #every cell has coordinates x and y and a type got from the fun setType
@@ -23,11 +26,15 @@ class Cell:
         return self.type 
 
     def setType(self):
-        if self.x == 0 or self.x == (constants.NUMCELLS -1): #boundary cells are always water
+        if self.x == 0 or self.x == (NUMCELLS -1): #boundary cells are always water
             return "Water" 
-        if self.y == 0 or self.y == (constants.NUMCELLS -1):
+        if self.y == 0 or self.y == (NUMCELLS -1):
             return "Water"
-        return random.choice(TYPES) #if it's not boundary it's a random choise between the array TYPES
+        if random.random() > CELL_PROBABILITY:
+            return "Ground"
+        else:
+            return "Water"
+        #return random.choice(TYPES) #if it's not boundary it's a random choise between the array TYPES
     
     def isGround(self):
         return self.type == "Ground"
