@@ -9,13 +9,7 @@ sys.path.append(parent_dir)
 
 from vegetobs.setup import vegetobs
 
-def grow():
-
-    totalDensity = 0
-    
+def grow():    
     for cellname in vegetobs:
         vegetobs[cellname].grows()
-        totalDensity += vegetobs[cellname].getDensity()
-
-    return totalDensity
 

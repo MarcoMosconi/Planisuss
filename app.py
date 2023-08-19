@@ -5,6 +5,8 @@ from phases.growing import growing
 import matplotlib.pyplot as plt
 from erbasts.setup import setupHerds
 from phases.spawning import spawning
+from phases.grazing import grazing
+from phases.visualizing import visualizing
 
 totalDays = []
 totalDensities = []
@@ -22,9 +24,11 @@ def setup():
 def main():
     for day in range(1, NUMDAYS + 1):
         totalDays.append(day)
-        totalDensity = growing()
+        growing()
+        grazing()
+        spawning()
+        totalDensity, totalNumberErbast = visualizing()
         totalDensities.append(totalDensity)
-        totalNumberErbast = spawning()
         totalNumberErbasts.append(totalNumberErbast)
        
 

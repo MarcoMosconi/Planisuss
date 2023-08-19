@@ -26,4 +26,12 @@ class Vegetob:
         if self.density > 100:
             self.density = 100 
 
+    def graze(self, value):
+        if self.getDensity() >= value:
+            self.density -= value
+            return value
+        else:
+            availableDensity = self.density
+            self.density = 0
+            return availableDensity
 
