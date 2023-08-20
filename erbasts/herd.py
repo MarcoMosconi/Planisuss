@@ -7,6 +7,8 @@ sys.path.append(parent_dir)
 
 from erbasts.erbast import Erbast
 from keygenerator import generateKey
+from constants import NEIGHBORHOOD
+from vegetobs.setup import vegetobs
 
 class Herd:
     def __init__(self, cell):
@@ -60,6 +62,3 @@ class Herd:
             if availableEnergy == 0:
                 break
         return 
-            
-        
-

@@ -18,6 +18,7 @@ class Erbast:
         self.socialAttitude = self.setSocialAttitude()
         self.energy = self.setInitialEnergy(energy)
         self.age = 0
+        self.neighborhood = {}
 
     def setLifetime(self):
         return random.randint(0, MAX_LIFE)
@@ -43,7 +44,5 @@ class Erbast:
         return isAlive, self.energy
     
     def grazes(self):
-        self.energy += 1            
-
-
+        self.energy += 1           
     

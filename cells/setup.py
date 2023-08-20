@@ -12,11 +12,14 @@ from cells.cell import Cell
 
 cells = {}
 
+def setCellname(x,y):
+    return "c_" + str(x) + "_" + str(y)
+
 def setupCells():           
 
     for i in range(0, constants.NUMCELLS):      #coordinate x for every cell
         for j in range(0, constants.NUMCELLS):  #coordinate y for every cell
-            cellname = ("c_" + str(i) + "_" + str(j))   
+            cellname = setCellname(i,j)   
             c = Cell(i, j)                      #the coordinates are attributed to member of the class Cell
             cells[cellname] = c                 #cellname is the key given to the dictionary cells and the value is the corresponding cell
 
@@ -25,7 +28,7 @@ def setupCells():
     for i in range(0, constants.NUMCELLS):      #this is the grid with water/ground cells
         ln = ''
         for j in range(0, constants.NUMCELLS):
-            cellname = ("c_" + str(i) + "_" + str(j)) 
+            cellname = setCellname(i,j) 
             x = 'G' if cells[cellname].isGround() else '.'
             ln = ln + x + ' '
         print(ln)

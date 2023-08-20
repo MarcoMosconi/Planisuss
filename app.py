@@ -7,6 +7,7 @@ from erbasts.setup import setupHerds
 from phases.spawning import spawning
 from phases.grazing import grazing
 from phases.visualizing import visualizing
+from phases.movement import movement
 
 totalDays = []
 totalDensities = []
@@ -25,6 +26,7 @@ def main():
     for day in range(1, NUMDAYS + 1):
         totalDays.append(day)
         growing()
+        movement()
         grazing()
         spawning()
         totalDensity, totalNumberErbast = visualizing()

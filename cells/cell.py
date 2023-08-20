@@ -19,8 +19,7 @@ class Cell:
         self.type = self.setType()
     
     def getCoordinates(self):
-        print(self.x)
-        print(self.y)  
+        return self.x, self.y
   
     def getType(self):
         return self.type 
