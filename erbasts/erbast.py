@@ -8,7 +8,7 @@ parent_dir = os.path.abspath(os.path.join(current_dir, ".."))
 sys.path.append(parent_dir)
 
 import random
-from constants import MAX_ENERGY, MAX_LIFE, AGING
+from constants import MAX_ENERGY, MAX_LIFE, AGING, MIN_SOCIAL_ATTITUDE
 
 class Erbast:
     def __init__(self, cell, herd, energy = None):
@@ -18,7 +18,7 @@ class Erbast:
         self.socialAttitude = self.setSocialAttitude()
         self.energy = self.setInitialEnergy(energy)
         self.age = 0
-        self.neighborhood = {}
+        self.moved = False
 
     def setLifetime(self):
         return random.randint(0, MAX_LIFE)
@@ -44,5 +44,20 @@ class Erbast:
         return isAlive, self.energy
     
     def grazes(self):
-        self.energy += 1           
-    
+        if not self.moved:
+            self.energy += 1 
+        else:
+            self.moved = False   
+
+    def moves(self):
+        self.energy -= 1
+        self.moved = True
+
+    def willMove(self):
+        moves = False
+        isStill = True
+        if self.socialAttitude > MIN_SOCIAL_ATTITUDE and self.getEnergy() > MAX_ENERGY//3:
+            moves = True
+        if self.socialAttitude <= MIN_SOCIAL_ATTITUDE and self.getEnergy() > MAX_ENERGY//3:
+            isStill = False    
+        return moves, isStill

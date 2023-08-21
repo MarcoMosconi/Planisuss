@@ -7,8 +7,8 @@ sys.path.append(parent_dir)
 
 from erbasts.erbast import Erbast
 from keygenerator import generateKey
-from constants import NEIGHBORHOOD
-from vegetobs.setup import vegetobs
+import random
+from constants import MOVE_PROBABILITY
 
 class Herd:
     def __init__(self, cell):
@@ -61,4 +61,18 @@ class Herd:
             availableEnergy -= 1
             if availableEnergy == 0:
                 break
+        return 
+    
+    def move(self, targetCell):
+        targetHerd = Herd(targetCell)
+        movingErbasts = []
+        herdMoves = random.random() > MOVE_PROBABILITY
+        for key, erbast in self.erbasts.items():
+            erbastMoves, erbastIsStill = erbast.willMove()
+            if (herdMoves and erbastMoves) or (not herdMoves and not erbastIsStill):
+                movingErbasts.append(key)
+                erbast.moves()
+                targetHerd.addErbast(key, erbast)
+        for key in movingErbasts:
+            self.removeErbast(key)
         return 
