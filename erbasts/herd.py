@@ -19,12 +19,15 @@ class Herd:
         return self.erbasts
     
     def getNumErbast(self):
+        # print(self.cell, len(self.erbasts))
         return len(self.erbasts)
 
     def addErbast(self, key, erbast):
         self.erbasts[key] = erbast
+        # print('added with key', key, 'and lifetime', erbast.lifetime, 'and energy',erbast.getEnergy(), 'and cell', erbast.cell)
     
     def removeErbast(self, key):
+        # print('dead with key', key, 'and lifetime', self.erbasts[key].lifetime, 'and energy', self.erbasts[key].getEnergy(), 'and cell', self.erbasts[key].cell)
         self.erbasts.pop(key)
 
     def sortErbasts(self):
@@ -48,9 +51,10 @@ class Herd:
                     born.append({'key': key1, 'energy': energy1})
                     born.append({'key': key2, 'energy': energy2})
         for key in dead:
+            # print('dead with', key, 'key in the right way')
             self.removeErbast(key)
         for elm in born:
-            erbast = Erbast(self.cell, elm['key'], elm['energy'])
+            erbast = Erbast(self.cell, elm['energy'])
             self.addErbast(elm['key'], erbast)
         return self.getNumErbast()
     
@@ -63,16 +67,18 @@ class Herd:
                 break
         return 
     
-    def move(self, targetCell):
-        targetHerd = Herd(targetCell)
+    def move(self, targetHerd):
         movingErbasts = []
         herdMoves = random.random() > MOVE_PROBABILITY
         for key, erbast in self.erbasts.items():
             erbastMoves, erbastIsStill = erbast.willMove()
             if (herdMoves and erbastMoves) or (not herdMoves and not erbastIsStill):
                 movingErbasts.append(key)
+                print('erbast is in cell', erbast.cell, 'with energy', erbast.getEnergy())
                 erbast.moves()
+                erbast.cell = targetHerd.cell
                 targetHerd.addErbast(key, erbast)
+                # print('in herd cell', targetHerd.cell)
         for key in movingErbasts:
             self.removeErbast(key)
         return 

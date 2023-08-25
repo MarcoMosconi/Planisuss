@@ -11,9 +11,8 @@ import random
 from constants import MAX_ENERGY, MAX_LIFE, AGING, MIN_SOCIAL_ATTITUDE
 
 class Erbast:
-    def __init__(self, cell, herd, energy = None):
+    def __init__(self, cell, energy = None):
         self.cell = cell
-        self.herd = herd
         self.lifetime = self.setLifetime()
         self.socialAttitude = self.setSocialAttitude()
         self.energy = self.setInitialEnergy(energy)
@@ -56,8 +55,10 @@ class Erbast:
     def willMove(self):
         moves = False
         isStill = True
+        if self.moved:
+            return moves, isStill
         if self.socialAttitude > MIN_SOCIAL_ATTITUDE and self.getEnergy() > MAX_ENERGY//3:
             moves = True
         if self.socialAttitude <= MIN_SOCIAL_ATTITUDE and self.getEnergy() > MAX_ENERGY//3:
-            isStill = False    
+            isStill = False   
         return moves, isStill

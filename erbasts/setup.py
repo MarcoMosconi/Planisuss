@@ -23,7 +23,7 @@ def setupHerds():
             herds[key] = h           
             if random.random() > ERBAST_PROBABILITY:
                 erbkey = generateKey()
-                e = Erbast(cellname, key)
+                e = Erbast(cellname)
                 h.addErbast(erbkey, e)
                 totalNumberErbast += 1
     return totalNumberErbast
