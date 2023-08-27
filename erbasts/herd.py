@@ -63,7 +63,7 @@ class Herd:
         for key in keys:
             self.erbasts[key].grazes()
             availableEnergy -= 1
-            if availableEnergy == 0:
+            if availableEnergy <= 0:
                 break
         return 
     
@@ -74,7 +74,7 @@ class Herd:
             erbastMoves, erbastIsStill = erbast.willMove()
             if (herdMoves and erbastMoves) or (not herdMoves and not erbastIsStill):
                 movingErbasts.append(key)
-                print('erbast is in cell', erbast.cell, 'with energy', erbast.getEnergy())
+                # print('erbast is in cell', erbast.cell, 'with energy', erbast.getEnergy())
                 erbast.moves()
                 erbast.cell = targetHerd.cell
                 targetHerd.addErbast(key, erbast)

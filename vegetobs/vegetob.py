@@ -9,6 +9,7 @@ sys.path.append(parent_dir)
 
 import random
 from constants import GROWING
+import math
 
 class Vegetob:
     def __init__(self, cell):
@@ -31,7 +32,7 @@ class Vegetob:
             self.density -= value
             return value
         else:
-            availableDensity = self.density
+            availableDensity = math.ceil(self.density)
             self.density = 0
             return availableDensity
 

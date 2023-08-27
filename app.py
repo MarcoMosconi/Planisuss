@@ -10,7 +10,10 @@ from phases.spawning import spawning
 from phases.grazing import grazing
 from phases.visualizing import visualizing
 from phases.movement import movement
-from map import map
+from map import setupMap
+from random import seed
+
+seed(10)
 
 totalDays = []
 totalDensities = []
@@ -23,18 +26,19 @@ def setup():
     totalDensities.append(totalDensity)
     totalNumberErbast = setupHerds()
     totalNumberErbasts.append(totalNumberErbast)
-    A = np.asarray(map())
-    colors = ['dodgerblue', 'saddlebrown']
-    cmap = ListedColormap(colors)
-    plt.imshow(A, cmap=cmap)
-    plt.show()
+    setupMap()
+    
+    # A = np.asarray(setupMap())
+    # colors = ['dodgerblue', 'saddlebrown']
+    # cmap = ListedColormap(colors)
+    # plt.imshow(A, cmap=cmap)
 
 def main():
     fig, (ax, bx) = plt.subplots(1,2)
     ax.set_title("Total Daily Vegetob Density")
     bx.set_title("Total Daily Erbast Number")
     for day in range(1, NUMDAYS + 1):
-        print('--------------DAY', day)
+        # print('--------------DAY', day)
         totalDays.append(day)
         growing()
         movement()
