@@ -8,7 +8,7 @@ parent_dir = os.path.abspath(os.path.join(current_dir, ".."))
 sys.path.append(parent_dir)
 
 import random
-from constants import GROWING
+from constants import GROWING, MAX_DENSITY
 import math
 
 class Vegetob:
@@ -17,15 +17,15 @@ class Vegetob:
         self.density = self.setInitialDensity()
 
     def setInitialDensity(self):
-        return random.randint(0, 100) #random initial density between 0 and 100 
+        return random.randint(0, MAX_DENSITY) #random initial density between 0 and MAX_DENSITY 
     
     def getDensity(self):
         return self.density
         
     def grows(self):
         self.density += GROWING #it grows by GROWING until it reaches 100
-        if self.density > 100:
-            self.density = 100 
+        if self.density > MAX_DENSITY:
+            self.density = MAX_DENSITY 
 
     def graze(self, value):
         if self.getDensity() >= value:

@@ -3,7 +3,6 @@ from vegetobs.setup import setupVegetobs
 from constants import NUMDAYS
 from phases.growing import growing
 import matplotlib.pyplot as plt
-from matplotlib.colors import ListedColormap
 import numpy as np
 from erbasts.setup import setupHerds
 from phases.spawning import spawning
@@ -12,6 +11,7 @@ from phases.visualizing import visualizing
 from phases.movement import movement
 from map import setupMap
 from random import seed
+import sys
 
 seed(10)
 
@@ -26,7 +26,6 @@ def setup():
     totalDensities.append(totalDensity)
     totalNumberErbast = setupHerds()
     totalNumberErbasts.append(totalNumberErbast)
-    setupMap()
     
     # A = np.asarray(setupMap())
     # colors = ['dodgerblue', 'saddlebrown']
@@ -34,11 +33,11 @@ def setup():
     # plt.imshow(A, cmap=cmap)
 
 def main():
-    fig, (ax, bx) = plt.subplots(1,2)
+    fig, (ax, bx,cx) = plt.subplots(1,3)
     ax.set_title("Total Daily Vegetob Density")
     bx.set_title("Total Daily Erbast Number")
     for day in range(1, NUMDAYS + 1):
-        # print('--------------DAY', day)
+        print('--------------DAY', day)
         totalDays.append(day)
         growing()
         movement()
@@ -50,11 +49,18 @@ def main():
         totalNumberErbasts.append(totalNumberErbast)
         ax.plot(totalDays, totalDensities, 'tab:green')
         bx.plot(totalDays, totalNumberErbasts)
+        setupMap(cx)
         plt.pause(0.001)
     plt.show()
 
 def run():
     setup()
     main()
+
+# with open('C:\\Users\\marco\\OneDrive\\Desktop\\Planisuss\\ex.txt', 'w') as file:
+#     original_stdout = sys.stdout
+#     sys.stdout = file
+#     run()
+#     sys.stdout = original_stdout
 
 run()

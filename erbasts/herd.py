@@ -8,7 +8,7 @@ sys.path.append(parent_dir)
 from erbasts.erbast import Erbast
 from keygenerator import generateKey
 import random
-from constants import MOVE_PROBABILITY
+from constants import MOVE_PROBABILITY, MAX_HERD
 
 class Herd:
     def __init__(self, cell):
@@ -29,6 +29,9 @@ class Herd:
     def removeErbast(self, key):
         # print('dead with key', key, 'and lifetime', self.erbasts[key].lifetime, 'and energy', self.erbasts[key].getEnergy(), 'and cell', self.erbasts[key].cell)
         self.erbasts.pop(key)
+    
+    def kill(self):
+        self.erbasts = {}
 
     def sortErbasts(self):
         return sorted(self.erbasts, key = lambda item: self.erbasts[item].getEnergy())
@@ -72,7 +75,7 @@ class Herd:
         herdMoves = random.random() > MOVE_PROBABILITY
         for key, erbast in self.erbasts.items():
             erbastMoves, erbastIsStill = erbast.willMove()
-            if (herdMoves and erbastMoves) or (not herdMoves and not erbastIsStill):
+            if (herdMoves and erbastMoves) or (not herdMoves and not erbastIsStill) and len(targetHerd.erbasts) < MAX_HERD:
                 movingErbasts.append(key)
                 # print('erbast is in cell', erbast.cell, 'with energy', erbast.getEnergy())
                 erbast.moves()

@@ -10,7 +10,7 @@ from matplotlib.colors import ListedColormap
 import matplotlib.patches as pat
 import numpy as np
 from cells.setup import cells
-from constants import NUMCELLS, MAX_ENERGY
+from constants import NUMCELLS, MAX_ENERGY, MAX_DENSITY
 from vegetobs.setup import vegetobs
 from erbasts.setup import herds
 import random
@@ -24,7 +24,7 @@ def setErbastColor(c):
 def setCarvizColor(c):
     return setColor(c,0,0)
 
-def setupMap():
+def setupMap(ax):
     cellList = []
     for cellname in cells:
         cellList.append(cells[cellname])
@@ -42,7 +42,7 @@ def setupMap():
                 columnMapList.append(1)
                 for cellname in vegetobs:
                     if cells[cellname] == cell:
-                        columnDensityList.append(vegetobs[cellname].getDensity()/100)
+                        columnDensityList.append(vegetobs[cellname].getDensity()/MAX_DENSITY)
                 for key in herds:
                     if cells[herds[key].cell] == cell:
                         columnHerdList.append(herds[key])
@@ -54,21 +54,21 @@ def setupMap():
         densityLists.append(columnDensityList)
         herdLists.append(columnHerdList)
     
-    A = np.asarray(mapLists)
+    # A = np.asarray(mapLists)
     B = np.asarray(densityLists)
-    C = np.asarray(herdLists)
-    print(herdLists)
+    # C = np.asarray(herdLists)
+    # print(herdLists)
 
-    print(A)
-    print('--------------------------------')
+    # print(A)
+    # print('--------------------------------')
     print(B)
-    print('--------------------------------')
-    print(C)
+    # print('--------------------------------')
+    # print(C)
 
-    fig, ax = plt.subplots()
-    colors = ['white', 'saddlebrown']
+    # fig, ax = plt.subplots()
+    colors = ['lightcyan', 'saddlebrown']
     cmap = ListedColormap(colors)
-    mapCells = ax.imshow(mapLists, cmap=cmap, extent=[0,NUMCELLS,0,NUMCELLS])
+    # mapCells = ax.imshow(mapLists, cmap=cmap, extent=[0,NUMCELLS,0,NUMCELLS])
     # densityCells = ax.imshow(densityLists, extent=[0,NUMCELLS,0,NUMCELLS])
 
     numCell = len(mapLists)
@@ -87,19 +87,18 @@ def setupMap():
             # print('map value', mapLists[row][col], 'and density value', densityValue)
             if densityValue > 0:
                 square = pat.Rectangle((col, NUMCELLS-1-row), densityValue, densityValue, color = 'green')
-                ax.add_patch(square)
+                # ax.add_patch(square)
             herd = herdLists[row][col]
-            if herd != 0:
-                for key in herd.erbasts:
-                    circle = pat.Circle((col+random.uniform(0.15,0.85), NUMCELLS-random.uniform(0.15,0.85)-row), 0.15, color = setErbastColor(herd.erbasts[key].getEnergy()/MAX_ENERGY))
-                    ax.add_patch(circle)
+            # if herd != 0:
+            #     for key in herd.erbasts:
+            #         print((herd.erbasts[key].getEnergy()/MAX_ENERGY))
+            #         circle = pat.Circle((col+random.uniform(0.15,0.85), NUMCELLS-random.uniform(0.15,0.85)-row), 0.15, color = setErbastColor(herd.erbasts[key].getEnergy()/MAX_ENERGY))
+            #         ax.add_patch(circle)
         # print('------------------------')
     
-    ax.set_aspect('equal')
+    # ax.set_aspect('equal')
 
-    plt.show()
-
-    return
+    return 
     
 
 
