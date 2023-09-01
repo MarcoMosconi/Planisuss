@@ -6,7 +6,7 @@ parent_dir = os.path.abspath(os.path.join(current_dir, ".."))
 sys.path.append(parent_dir)
 
 from vegetobs.grow import grow
-from erbasts.neighbors import neighbors
+from animals.neighbors import neighbors
 
 def growing():
     grow()

@@ -9,7 +9,7 @@ sys.path.append(parent_dir)
 
 import random
 from constants import MAX_ENERGY, MAX_LIFE, AGING, MIN_SOCIAL_ATTITUDE
-from animals import Animal
+from animals.animal import Animal
 
 class Erbast(Animal):
     def __init__(self, cell, energy = None):

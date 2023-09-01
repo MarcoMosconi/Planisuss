@@ -46,6 +46,7 @@ def setupMap(ax):
                 for key in herds:
                     if cells[herds[key].cell] == cell:
                         columnHerdList.append(herds[key])
+                        break
             else:
                 columnMapList.append(0)
                 columnDensityList.append(0.0)

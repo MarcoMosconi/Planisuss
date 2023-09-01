@@ -5,6 +5,7 @@ from phases.growing import growing
 import matplotlib.pyplot as plt
 import numpy as np
 from erbasts.setup import setupHerds
+from carvizes.setup import setupPrides
 from phases.spawning import spawning
 from phases.grazing import grazing
 from phases.visualizing import visualizing
@@ -18,6 +19,7 @@ seed(10)
 totalDays = []
 totalDensities = []
 totalNumberErbasts = []
+totalNumberCarvizes = []
 
 def setup():
     totalDays.append(0)
@@ -26,6 +28,8 @@ def setup():
     totalDensities.append(totalDensity)
     totalNumberErbast = setupHerds()
     totalNumberErbasts.append(totalNumberErbast)
+    totalNumberCarviz = setupPrides()
+    totalNumberCarvizes.append(totalNumberCarviz)
     
     # A = np.asarray(setupMap())
     # colors = ['dodgerblue', 'saddlebrown']
@@ -33,9 +37,10 @@ def setup():
     # plt.imshow(A, cmap=cmap)
 
 def main():
-    fig, (ax, bx,cx) = plt.subplots(1,3)
+    fig, ((ax, bx),(cx,dx)) = plt.subplots(2,2)
     ax.set_title("Total Daily Vegetob Density")
     bx.set_title("Total Daily Erbast Number")
+    cx.set_title("Total Daily Carviz Number")
     for day in range(1, NUMDAYS + 1):
         print('--------------DAY', day)
         totalDays.append(day)
@@ -44,12 +49,14 @@ def main():
         # print('---------------')
         grazing()
         spawning()
-        totalDensity, totalNumberErbast = visualizing()
+        totalDensity, totalNumberErbast, totalNumberCarviz = visualizing()
         totalDensities.append(totalDensity)
         totalNumberErbasts.append(totalNumberErbast)
+        totalNumberCarvizes.append(totalNumberCarviz)
         ax.plot(totalDays, totalDensities, 'tab:green')
         bx.plot(totalDays, totalNumberErbasts)
-        setupMap(cx)
+        cx.plot(totalDays, totalNumberCarvizes)
+        setupMap(dx)
         plt.pause(0.001)
     plt.show()
 
