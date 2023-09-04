@@ -72,18 +72,18 @@ class Herd(Group):
                 break
         return 
     
-    def move(self, targetHerd):
-        movingErbasts = []
-        herdMoves = random.random() > MOVE_PROBABILITY
-        for key, erbast in self.animals.items():
-            erbastMoves, erbastIsStill = erbast.willMove()
-            if (herdMoves and erbastMoves) or (not herdMoves and not erbastIsStill) and len(targetHerd.erbasts) < MAX_HERD:
-                movingErbasts.append(key)
-                # print('erbast is in cell', erbast.cell, 'with energy', erbast.getEnergy())
-                erbast.moves()
-                erbast.cell = targetHerd.cell
-                targetHerd.addAnimal(key, erbast)
-                # print('in herd cell', targetHerd.cell)
-        for key in movingErbasts:
-            self.removeAnimal(key)
-        return 
+    # def move(self, targetHerd):
+    #     movingErbasts = []
+    #     herdMoves = random.random() > MOVE_PROBABILITY
+    #     for key, erbast in self.animals.items():
+    #         erbastMoves, erbastIsStill = erbast.willMove()
+    #         if (herdMoves and erbastMoves) or (not herdMoves and not erbastIsStill) and len(targetHerd.erbasts) < MAX_HERD:
+    #             movingErbasts.append(key)
+    #             # print('erbast is in cell', erbast.cell, 'with energy', erbast.getEnergy())
+    #             erbast.moves()
+    #             erbast.cell = targetHerd.cell
+    #             targetHerd.addAnimal(key, erbast)
+    #             # print('in herd cell', targetHerd.cell)
+    #     for key in movingErbasts:
+    #         self.removeAnimal(key)
+    #     return 

@@ -42,7 +42,7 @@ def main():
     bx.set_title("Total Daily Erbast Number")
     cx.set_title("Total Daily Carviz Number")
     for day in range(1, NUMDAYS + 1):
-        print('--------------DAY', day)
+        # print('--------------DAY', day)
         totalDays.append(day)
         growing()
         movement()

@@ -8,6 +8,8 @@ sys.path.append(parent_dir)
 from erbasts.setup import herds
 from carvizes.setup import prides
 from animals.findPrey import findPrey
+from carvizes.pride import Pride
+from keygenerator import generateKey
 
 def movement():
     for key in herds:
@@ -22,6 +24,8 @@ def movement():
                         herd.move(herds[key])
                         break
     
+    newPrides = []
+
     for key in prides:
         pride = prides[key]
         cellname = pride.cell
@@ -29,8 +33,14 @@ def movement():
         if num > 0:
             _, targetCellname, _ = findPrey(cellname)
             if targetCellname != cellname:
-                for key in prides:
-                    if targetCellname == prides[key].cell:
-                        pride.move(prides[key])
-                        break
+                targetPride = Pride(targetCellname)
+                newPrides.append(targetPride)
+                pride.move(targetPride)
+                # for key in prides:
+                #     if targetCellname == prides[key].cell:
+                #         pride.move(prides[key])
+                #         break
+    for newPride in newPrides:
+        prideKey = generateKey()
+        prides[prideKey] = newPride
     return 

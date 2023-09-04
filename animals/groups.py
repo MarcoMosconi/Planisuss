@@ -60,3 +60,19 @@ class Group:
             erbast = Erbast(self.cell, elm['energy'])
             self.addAnimal(elm['key'], erbast)
         return self.getNumAnimal()
+    
+    def move(self, targetGroup):
+        movingAnimal = []
+        groupMoves = random.random() > MOVE_PROBABILITY
+        for key, animal in self.animals.items():
+            animalMoves, animalIsStill = animal.willMove()
+            if (groupMoves and animalMoves) or (not groupMoves and not animalIsStill) and targetGroup.getNumAnimal() < MAX_HERD:
+                movingAnimal.append(key)
+                # print('animal is in cell', animal.cell, 'with energy', animal.getEnergy())
+                animal.moves()
+                animal.cell = targetGroup.cell
+                targetGroup.addAnimal(key, animal)
+                # print('in herd cell', targetHerd.cell)
+        for key in movingAnimal:
+            self.removeAnimal(key)
+        return 

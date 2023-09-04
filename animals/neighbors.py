@@ -15,14 +15,14 @@ def neighbors():
         cellname = herds[key].cell
         _, _, killHerd = findPrey(cellname)
         if killHerd:
-            print('kill', cellname)
+            # print('kill', cellname)
             herds[key].kill()
 
     for key in prides:
         cellname = prides[key].cell
         _, _, killHerd = findPrey(cellname)
         if killHerd:
-            print('kill', cellname)
+            # print('kill', cellname)
             prides[key].kill()
     
     

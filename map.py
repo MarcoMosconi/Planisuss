@@ -62,7 +62,7 @@ def setupMap(ax):
 
     # print(A)
     # print('--------------------------------')
-    print(B)
+    # print(B)
     # print('--------------------------------')
     # print(C)
 
