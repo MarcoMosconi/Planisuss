@@ -41,6 +41,7 @@ def movement():
                 #         pride.move(prides[key])
                 #         break
     for newPride in newPrides:
-        prideKey = generateKey()
-        prides[prideKey] = newPride
+        if newPride.getNumAnimal() > 0:
+            prideKey = generateKey()
+            prides[prideKey] = newPride
     return 

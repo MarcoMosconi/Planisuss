@@ -10,6 +10,7 @@ from phases.spawning import spawning
 from phases.grazing import grazing
 from phases.visualizing import visualizing
 from phases.movement import movement
+from phases.struggle import struggle
 from map import setupMap
 from random import seed
 import sys
@@ -48,6 +49,7 @@ def main():
         movement()
         # print('---------------')
         grazing()
+        struggle()
         spawning()
         totalDensity, totalNumberErbast, totalNumberCarviz = visualizing()
         totalDensities.append(totalDensity)

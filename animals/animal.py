@@ -24,6 +24,9 @@ class Animal:
     def getEnergy(self):
         return self.energy
     
+    def getSocialAttitude(self):
+        return self.socialAttitude
+    
     def grows(self):
         isAlive = True
         self.age += 1
@@ -42,8 +45,8 @@ class Animal:
         isStill = True
         if self.moved:
             return moves, isStill
-        if self.socialAttitude > MIN_SOCIAL_ATTITUDE and self.getEnergy() > MAX_ENERGY//3:
+        if self.getSocialAttitude() > MIN_SOCIAL_ATTITUDE and self.getEnergy() > MAX_ENERGY//3:
             moves = True
-        if self.socialAttitude <= MIN_SOCIAL_ATTITUDE and self.getEnergy() > MAX_ENERGY//3:
+        if self.getSocialAttitude() <= MIN_SOCIAL_ATTITUDE and self.getEnergy() > MAX_ENERGY//3:
             isStill = False   
         return moves, isStill
