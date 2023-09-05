@@ -8,6 +8,7 @@ sys.path.append(parent_dir)
 from carvizes.setup import prides
 from cells.setup import cells
 from carvizes.fight import fight
+from carvizes.hunt import hunt
 
 def struggle():
     for cellname in cells:
@@ -42,7 +43,8 @@ def struggle():
                     prides.pop(joiningPrides[1])
                     joiningPrides.remove(joiningPrides[1])
                 else:
-                    fight(joiningPrides[0], joiningPrides[1], joiningPrides)
+                    fight(joiningPrides)
+            hunt(prides[joiningPrides[0]])
 
                     
 
