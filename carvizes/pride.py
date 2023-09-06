@@ -36,3 +36,21 @@ class Pride(Group):
                         break
         return
     
+    def join(self, targetPride):
+        for key in self.animals:
+            targetPride.addAnimal(key, self.animals[key])
+    
+    def winFight(self):
+        for key in self.animals:
+            if self.animals[key].socialAttitude < 1:
+                self.animals[key].socialAttitude += 0.1
+    
+    def failHunt(self):
+        deadCarviz = []
+        for key in self.animals:
+            self.animals[key].socialAttitude -= 0.1
+            self.animals[key].energy -= 2
+            if self.animals[key].energy <= 0:
+                deadCarviz.append(key)
+        for key in deadCarviz:
+            self.removeAnimal(key)

@@ -20,9 +20,7 @@ def hunt(pride):
         erbKeys = revErbKeys[::-1]
         preyErbKey = erbKeys[0]
         erbEnergy = preyHerd.animals[preyErbKey].getEnergy()
-        prideEnergy = 0
-        for key in pride.animals:
-            prideEnergy += pride.animals[key].getEnergy()
+        prideEnergy = pride.getTotalEnergy()
         while erbAlive and prideEnergy > 0:
             if random.randint(0, erbEnergy+prideEnergy) > erbEnergy:
                 pride.eat(erbEnergy)
@@ -31,18 +29,9 @@ def hunt(pride):
                 erbAlive = False
                 preyHerd.removeAnimal(preyErbKey)
             else:
-                deadCarviz = []
-                for key in pride.animals:
-                    pride.animals[key].socialAttitude -= 0.1
-                    pride.animals[key].energy -= 2
-                    if pride.animals[key].energy <= 0:
-                        deadCarviz.append(key)
-                for key in deadCarviz:
-                    pride.removeAnimal(key)
+                pride.failHunt()
                 erbEnergy = preyHerd.animals[preyErbKey].getEnergy()
-                prideEnergy = 0
-                for key in pride.animals:
-                    prideEnergy += pride.animals[key].getEnergy()
+                prideEnergy = pride.getTotalEnergy()
                 
     return
 

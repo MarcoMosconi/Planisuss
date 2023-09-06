@@ -21,6 +21,19 @@ class Group:
     def getNumAnimal(self):
         # print(self.cell, len(self.animals))
         return len(self.animals)
+    
+    def getAvSocialAttitude(self):
+        socialAtt = 0
+        for key in self.animals:
+                socialAtt += self.animals[key].getSocialAttitude()
+        avSocialAtt = socialAtt/self.getNumAnimal()
+        return avSocialAtt
+    
+    def getTotalEnergy(self):
+        totEnergy = 0
+        for key in self.animals:
+            totEnergy += self.animals[key].getEnergy()
+        return totEnergy
 
     def addAnimal(self, key, animal):
         self.animals[key] = animal

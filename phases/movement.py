@@ -36,10 +36,6 @@ def movement():
                 targetPride = Pride(targetCellname)
                 newPrides.append(targetPride)
                 pride.move(targetPride)
-                # for key in prides:
-                #     if targetCellname == prides[key].cell:
-                #         pride.move(prides[key])
-                #         break
     for newPride in newPrides:
         if newPride.getNumAnimal() > 0:
             prideKey = generateKey()

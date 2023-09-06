@@ -29,17 +29,10 @@ def struggle():
             while len(joiningPrides) > 1:
                 pride1 = prides[joiningPrides[0]]
                 pride2 = prides[joiningPrides[1]]
-                socialAtt1 = 0
-                socialAtt2 = 0
-                for carkey in pride1.animals:
-                    socialAtt1 += pride1.animals[carkey].getSocialAttitude()
-                avSocialAtt1 = socialAtt1/pride1.getNumAnimal()
-                for carkey in pride2.animals:
-                    socialAtt2 += pride2.animals[carkey].getSocialAttitude()
-                avSocialAtt2 = socialAtt2/pride2.getNumAnimal()
+                avSocialAtt1 = pride1.getAvSocialAttitude()
+                avSocialAtt2 = pride2.getAvSocialAttitude()
                 if avSocialAtt1 > 0.5 and avSocialAtt2 > 0.5:
-                    for key in pride2.animals:
-                        pride1.addAnimal(key, pride2.animals[key])
+                    pride2.join(pride1)
                     prides.pop(joiningPrides[1])
                     joiningPrides.remove(joiningPrides[1])
                 else:
