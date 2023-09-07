@@ -66,10 +66,10 @@ def setupMap(ax):
     # print('--------------------------------')
     # print(C)
 
-    # fig, ax = plt.subplots()
+    fig, ax = plt.subplots()
     colors = ['lightcyan', 'saddlebrown']
     cmap = ListedColormap(colors)
-    # mapCells = ax.imshow(mapLists, cmap=cmap, extent=[0,NUMCELLS,0,NUMCELLS])
+    mapCells = ax.imshow(mapLists, cmap=cmap, extent=[0,NUMCELLS,0,NUMCELLS])
     # densityCells = ax.imshow(densityLists, extent=[0,NUMCELLS,0,NUMCELLS])
 
     numCell = len(mapLists)
@@ -88,16 +88,16 @@ def setupMap(ax):
             # print('map value', mapLists[row][col], 'and density value', densityValue)
             if densityValue > 0:
                 square = pat.Rectangle((col, NUMCELLS-1-row), densityValue, densityValue, color = 'green')
-                # ax.add_patch(square)
+                ax.add_patch(square)
             herd = herdLists[row][col]
-            # if herd != 0:
-            #     for key in herd.erbasts:
-            #         print((herd.erbasts[key].getEnergy()/MAX_ENERGY))
-            #         circle = pat.Circle((col+random.uniform(0.15,0.85), NUMCELLS-random.uniform(0.15,0.85)-row), 0.15, color = setErbastColor(herd.erbasts[key].getEnergy()/MAX_ENERGY))
-            #         ax.add_patch(circle)
+            if herd != 0:
+                for key in herd.animals:
+                    # print((herd.animals[key].getEnergy()/MAX_ENERGY))
+                    circle = pat.Circle((col+random.uniform(0.15,0.85), NUMCELLS-random.uniform(0.15,0.85)-row), 0.15, color = setErbastColor(herd.animals[key].getEnergy()/MAX_ENERGY))
+                    ax.add_patch(circle)
         # print('------------------------')
     
-    # ax.set_aspect('equal')
+    ax.set_aspect('equal')
 
     return 
     

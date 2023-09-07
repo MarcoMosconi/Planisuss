@@ -6,6 +6,7 @@ parent_dir = os.path.abspath(os.path.join(current_dir, ".."))
 sys.path.append(parent_dir)
 
 from erbasts.erbast import Erbast
+from carvizes.carviz import Carviz
 from keygenerator import generateKey
 import random
 from constants import MOVE_PROBABILITY, MAX_HERD
@@ -70,8 +71,11 @@ class Group:
             # print('dead with', key, 'key in the right way')
             self.removeAnimal(key)
         for elm in born:
-            erbast = Erbast(self.cell, elm['energy'])
-            self.addAnimal(elm['key'], erbast)
+            if isinstance(animal, Erbast):
+                bornAnimal = Erbast(self.cell, elm['energy'])
+            if isinstance(animal, Carviz):
+                bornAnimal = Carviz(self.cell, elm['energy'])
+            self.addAnimal(elm['key'], bornAnimal)
         return self.getNumAnimal()
     
     def move(self, targetGroup):
