@@ -9,7 +9,7 @@ from erbasts.erbast import Erbast
 from carvizes.carviz import Carviz
 from keygenerator import generateKey
 import random
-from constants import MOVE_PROBABILITY, MAX_HERD
+from constants import MOVE_PROBABILITY, MAX_HERD, MAX_PRIDE
 
 class Group:
     def __init__(self, cell):
@@ -60,7 +60,7 @@ class Group:
             isAlive, energy = animal.grows()
             if not isAlive:
                 dead.append(key)
-                if energy > 0:
+                if (self.getNumAnimal() < MAX_HERD-1 and isinstance(animal, Erbast)) or (self.getNumAnimal() < MAX_PRIDE-1 and isinstance(animal, Carviz)) and energy > 0:
                     energy1 = energy//2
                     energy2 = energy - energy1
                     key1 = generateKey()
@@ -83,7 +83,7 @@ class Group:
         groupMoves = random.random() > MOVE_PROBABILITY
         for key, animal in self.animals.items():
             animalMoves, animalIsStill = animal.willMove()
-            if (groupMoves and animalMoves) or (not groupMoves and not animalIsStill) and targetGroup.getNumAnimal() < MAX_HERD:
+            if ((groupMoves and animalMoves) or (not groupMoves and not animalIsStill)) and ((targetGroup.getNumAnimal() < MAX_HERD and isinstance(animal, Erbast)) or (targetGroup.getNumAnimal() < MAX_PRIDE and isinstance(animal, Carviz))):
                 movingAnimal.append(key)
                 # print('animal is in cell', animal.cell, 'with energy', animal.getEnergy())
                 animal.moves()

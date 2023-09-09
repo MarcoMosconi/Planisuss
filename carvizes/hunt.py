@@ -24,8 +24,7 @@ def hunt(pride):
         while erbAlive and prideEnergy > 0:
             if random.randint(0, erbEnergy+prideEnergy) > erbEnergy:
                 pride.eat(erbEnergy)
-                for key in pride.animals:
-                    pride.animals[key].socialAttitude += 0.1
+                pride.winFight()
                 erbAlive = False
                 preyHerd.removeAnimal(preyErbKey)
             else:

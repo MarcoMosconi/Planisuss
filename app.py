@@ -13,6 +13,7 @@ from phases.movement import movement
 from phases.struggle import struggle
 from map import setupMap
 from random import seed
+from matplotlib.animation import FuncAnimation 
 import sys
 
 seed(10)
@@ -42,6 +43,8 @@ def main():
     ax.set_title("Total Daily Vegetob Density")
     bx.set_title("Total Daily Erbast Number")
     cx.set_title("Total Daily Carviz Number")
+    dx.set_aspect('equal')
+    dx.set_title("Map")
     for day in range(1, NUMDAYS + 1):
         # print('--------------DAY', day)
         totalDays.append(day)
@@ -56,10 +59,11 @@ def main():
         totalNumberErbasts.append(totalNumberErbast)
         totalNumberCarvizes.append(totalNumberCarviz)
         ax.plot(totalDays, totalDensities, 'tab:green')
-        bx.plot(totalDays, totalNumberErbasts)
-        cx.plot(totalDays, totalNumberCarvizes)
+        bx.plot(totalDays, totalNumberErbasts, 'tab:orange')
+        cx.plot(totalDays, totalNumberCarvizes, 'tab:red')
         setupMap(dx)
-        plt.pause(0.001)
+        # anim = FuncAnimation(fig, setupMap(dx), interval=0)
+        plt.pause(0.01)
     plt.show()
 
 def run():

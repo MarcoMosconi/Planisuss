@@ -38,6 +38,7 @@ class Pride(Group):
     
     def join(self, targetPride):
         for key in self.animals:
+            self.animals[key].cell = targetPride.cell
             targetPride.addAnimal(key, self.animals[key])
     
     def winFight(self):
@@ -49,6 +50,8 @@ class Pride(Group):
         deadCarviz = []
         for key in self.animals:
             self.animals[key].socialAttitude -= 0.1
+            if self.animals[key].socialAttitude < 0:
+                self.animals[key].socialAttitude == 0
             self.animals[key].energy -= 2
             if self.animals[key].energy <= 0:
                 deadCarviz.append(key)

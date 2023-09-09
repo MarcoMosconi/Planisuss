@@ -10,10 +10,12 @@ from matplotlib.colors import ListedColormap
 import matplotlib.patches as pat
 import numpy as np
 from cells.setup import cells
-from constants import NUMCELLS, MAX_ENERGY, MAX_DENSITY
+from constants import NUMCELLS, MAX_ENERGY, MAX_DENSITY, MAX_HERD
 from vegetobs.setup import vegetobs
 from erbasts.setup import herds
 import random
+
+animations = []
 
 def setColor(r,g,b):
     return [r,g,b]
@@ -25,6 +27,7 @@ def setCarvizColor(c):
     return setColor(c,0,0)
 
 def setupMap(ax):
+    plt.cla()
     cellList = []
     for cellname in cells:
         cellList.append(cells[cellname])
@@ -56,7 +59,7 @@ def setupMap(ax):
         herdLists.append(columnHerdList)
     
     # A = np.asarray(mapLists)
-    B = np.asarray(densityLists)
+    # B = np.asarray(densityLists)
     # C = np.asarray(herdLists)
     # print(herdLists)
 
@@ -66,7 +69,7 @@ def setupMap(ax):
     # print('--------------------------------')
     # print(C)
 
-    fig, ax = plt.subplots()
+    # fig, ax = plt.subplots()
     colors = ['lightcyan', 'saddlebrown']
     cmap = ListedColormap(colors)
     mapCells = ax.imshow(mapLists, cmap=cmap, extent=[0,NUMCELLS,0,NUMCELLS])
@@ -82,23 +85,33 @@ def setupMap(ax):
     
     # densityLista = [[0.7, 0.0, 0.0, 0.0, 0.0], [0.0, 0.5, 0.0, 0.9, 0.0], [0.0, 0.2, 0.4, 0.0, 0.0], [0.0, 0.0, 0.0, 0.0, 0.0], [0.0, 0.0, 0.0, 0.0, 0.8]]
 
+    # for a in animations:
+    #     a.remove()
+
     for row, rowList in enumerate(mapLists):
         for col, _ in enumerate(rowList):
             densityValue = densityLists[row][col]
             # print('map value', mapLists[row][col], 'and density value', densityValue)
-            if densityValue > 0:
-                square = pat.Rectangle((col, NUMCELLS-1-row), densityValue, densityValue, color = 'green')
-                ax.add_patch(square)
+            # if densityValue > 0:
+            square = pat.Rectangle((col, NUMCELLS-1-row), densityValue, densityValue, color = 'green')
+            animations.append(square)
+            ax.add_patch(square)
             herd = herdLists[row][col]
             if herd != 0:
+                # totErb = herd.getNumAnimal()
+                # erbColor = 0 if totErb == 0 else herd.getTotalEnergy()/(MAX_ENERGY*totErb)
+                # circle = pat.Circle((col+0.5, NUMCELLS-0.5-row), 0.5*totErb/MAX_HERD, color = setErbastColor(erbColor))
+                # animations.append(circle)
+                # ax.add_patch(circle)
                 for key in herd.animals:
                     # print((herd.animals[key].getEnergy()/MAX_ENERGY))
                     circle = pat.Circle((col+random.uniform(0.15,0.85), NUMCELLS-random.uniform(0.15,0.85)-row), 0.15, color = setErbastColor(herd.animals[key].getEnergy()/MAX_ENERGY))
                     ax.add_patch(circle)
         # print('------------------------')
-    
-    ax.set_aspect('equal')
 
+    # for a in animations:
+    #     ax.add_patch(a)
+    
     return 
     
 
