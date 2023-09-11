@@ -2,19 +2,23 @@ import random
 from constants import MAX_ENERGY, MAX_LIFE, AGING, MIN_SOCIAL_ATTITUDE
 
 class Animal:
-    def __init__(self, cell, energy = None):
+    def __init__(self, cell, energy = None, lifetime = None, socialAttitude = None):
         self.cell = cell
-        self.lifetime = self.setLifetime()
-        self.socialAttitude = self.setSocialAttitude()
+        self.lifetime = self.setLifetime(lifetime)
+        self.socialAttitude = self.setSocialAttitude(socialAttitude)
         self.energy = self.setInitialEnergy(energy)
         self.age = 0
         self.moved = False
 
-    def setLifetime(self):
-        return random.randint(0, MAX_LIFE)
+    def setLifetime(self, lifetime):
+        if lifetime == None:
+            return random.randint(0, MAX_LIFE)
+        return lifetime
     
-    def setSocialAttitude(self):
-        return random.random()
+    def setSocialAttitude(self, socialAttitude):
+        if socialAttitude == None:
+            return random.random()
+        return socialAttitude
     
     def setInitialEnergy(self, energy):
         if energy == None:
@@ -34,7 +38,7 @@ class Animal:
                 self.energy -= AGING
         if self.energy <= 0 or self.age == self.lifetime:
             isAlive = False 
-        return isAlive, self.energy
+        return isAlive, self.energy, self.lifetime
     
     def moves(self):
         self.energy -= 1

@@ -13,6 +13,7 @@ from cells.setup import cells
 from constants import NUMCELLS, MAX_ENERGY, MAX_DENSITY, MAX_HERD
 from vegetobs.setup import vegetobs
 from erbasts.setup import herds
+from carvizes.setup import prides
 import random
 
 animations = []
@@ -28,6 +29,7 @@ def setCarvizColor(c):
 
 def setupMap(ax):
     plt.cla()
+    ax.set_title("Map")
     cellList = []
     for cellname in cells:
         cellList.append(cells[cellname])
@@ -35,10 +37,12 @@ def setupMap(ax):
     mapLists = []
     densityLists = []
     herdLists = []
+    prideLists = []
     for i in range(0, NUMCELLS):
         columnMapList = []
         columnDensityList = []
         columnHerdList = []
+        columnPrideList = []
         for j in range(i, len(cellList), NUMCELLS):
             cell = cellList[j]
             if cell.isGround():
@@ -50,14 +54,19 @@ def setupMap(ax):
                     if cells[herds[key].cell] == cell:
                         columnHerdList.append(herds[key])
                         break
+                for key in prides:
+                    if cells[prides[key].cell] == cell:
+                        columnPrideList.append(prides[key])
+                        break
             else:
                 columnMapList.append(0)
                 columnDensityList.append(0.0)
                 columnHerdList.append(0)
+                columnPrideList.append(0)
         mapLists.append(columnMapList)
         densityLists.append(columnDensityList)
         herdLists.append(columnHerdList)
-    
+        prideLists.append(columnPrideList)
     # A = np.asarray(mapLists)
     # B = np.asarray(densityLists)
     # C = np.asarray(herdLists)
@@ -107,6 +116,11 @@ def setupMap(ax):
                     # print((herd.animals[key].getEnergy()/MAX_ENERGY))
                     circle = pat.Circle((col+random.uniform(0.15,0.85), NUMCELLS-random.uniform(0.15,0.85)-row), 0.15, color = setErbastColor(herd.animals[key].getEnergy()/MAX_ENERGY))
                     ax.add_patch(circle)
+            pride = prideLists[row][col]
+            if pride != 0:
+                for key in pride.animals:
+                    triangle = pat.RegularPolygon((col+random.uniform(0.15,0.85), NUMCELLS-random.uniform(0.15,0.85)-row), 3, 0.15, 0.0, color = setCarvizColor(pride.animals[key].getEnergy()/MAX_ENERGY))
+                    ax.add_patch(triangle)
         # print('------------------------')
 
     # for a in animations:

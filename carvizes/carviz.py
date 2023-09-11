@@ -9,8 +9,8 @@ from animals.animal import Animal
 from constants import MAX_ENERGY
 
 class Carviz(Animal):
-   def __init__(self, cell, energy = None):
-      super().__init__(cell, energy)
+   def __init__(self, cell, energy = None, lifetime = None, socialAttitude = None):
+      super().__init__(cell, energy, lifetime, socialAttitude)
    
    def eats(self, indEnergy):
          if self.energy + indEnergy < MAX_ENERGY:

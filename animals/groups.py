@@ -9,7 +9,7 @@ from erbasts.erbast import Erbast
 from carvizes.carviz import Carviz
 from keygenerator import generateKey
 import random
-from constants import MOVE_PROBABILITY, MAX_HERD, MAX_PRIDE
+from constants import MOVE_PROBABILITY, MAX_HERD, MAX_PRIDE, MAX_LIFE
 
 class Group:
     def __init__(self, cell):
@@ -57,33 +57,44 @@ class Group:
         dead = []
         
         for key, animal in self.animals.items():
-            isAlive, energy = animal.grows()
+            isAlive, energy, lifetime = animal.grows()
             if not isAlive:
                 dead.append(key)
                 if (self.getNumAnimal() < MAX_HERD-1 and isinstance(animal, Erbast)) or (self.getNumAnimal() < MAX_PRIDE-1 and isinstance(animal, Carviz)) and energy > 0:
-                    energy1 = energy//2
+                    energy1 = random.randint(0,energy)
                     energy2 = energy - energy1
+                    lifetime1 = random.randint(0, min(MAX_LIFE, 2*lifetime))
+                    lifetime2 = 2*lifetime-lifetime1
+                    socialAtt1 = random.uniform(0, min(1, 2*animal.getSocialAttitude()))
+                    socialAtt2 = 2*animal.getSocialAttitude()-socialAtt1
                     key1 = generateKey()
                     key2 = generateKey()
-                    born.append({'key': key1, 'energy': energy1})
-                    born.append({'key': key2, 'energy': energy2})
+                    born.append({'key': key1, 'energy': energy1, 'lifetime': lifetime1, 'socialAttitude': socialAtt1})
+                    born.append({'key': key2, 'energy': energy2, 'lifetime': lifetime2, 'socialAttitude': socialAtt2})
         for key in dead:
             # print('dead with', key, 'key in the right way')
             self.removeAnimal(key)
         for elm in born:
             if isinstance(animal, Erbast):
-                bornAnimal = Erbast(self.cell, elm['energy'])
+                bornAnimal = Erbast(self.cell, elm['energy'], elm['lifetime'], elm['socialAttitude'])
             if isinstance(animal, Carviz):
-                bornAnimal = Carviz(self.cell, elm['energy'])
+                bornAnimal = Carviz(self.cell, elm['energy'], elm['lifetime'], elm['socialAttitude'])
             self.addAnimal(elm['key'], bornAnimal)
         return self.getNumAnimal()
     
     def move(self, targetGroup):
         movingAnimal = []
+        erbastsList = []
+        # for key, animal in self.animals.items():
+        #     if isinstance(animal, Erbast):
+        #         erbastsList.append(animal)
+        # if len(erbastsList) > 0:
+        #     print(erbastsList[0].cell,'has target', targetGroup.cell)
         groupMoves = random.random() > MOVE_PROBABILITY
         for key, animal in self.animals.items():
             animalMoves, animalIsStill = animal.willMove()
-            if ((groupMoves and animalMoves) or (not groupMoves and not animalIsStill)) and ((targetGroup.getNumAnimal() < MAX_HERD and isinstance(animal, Erbast)) or (targetGroup.getNumAnimal() < MAX_PRIDE and isinstance(animal, Carviz))):
+            max = MAX_HERD if isinstance(animal, Erbast) else MAX_PRIDE
+            if ((groupMoves and animalMoves) or (not groupMoves and not animalIsStill)) and targetGroup.getNumAnimal() < max:
                 movingAnimal.append(key)
                 # print('animal is in cell', animal.cell, 'with energy', animal.getEnergy())
                 animal.moves()

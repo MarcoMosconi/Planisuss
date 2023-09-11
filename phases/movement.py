@@ -17,7 +17,7 @@ def movement():
         cellname = herd.cell
         num = herd.getNumAnimal()
         if num > 0:
-            targetCellname = findPrey(cellname)
+            targetCellname, _, _ = findPrey(cellname)
             if targetCellname != cellname:
                 for key in herds:
                     if targetCellname == herds[key].cell:

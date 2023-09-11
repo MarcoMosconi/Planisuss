@@ -16,7 +16,7 @@ from random import seed
 from matplotlib.animation import FuncAnimation 
 import sys
 
-seed(10)
+# seed(10)
 
 totalDays = []
 totalDensities = []
@@ -44,9 +44,8 @@ def main():
     bx.set_title("Total Daily Erbast Number")
     cx.set_title("Total Daily Carviz Number")
     dx.set_aspect('equal')
-    dx.set_title("Map")
     for day in range(1, NUMDAYS + 1):
-        # print('--------------DAY', day)
+        print('--------------DAY', day)
         totalDays.append(day)
         growing()
         movement()
@@ -70,10 +69,10 @@ def run():
     setup()
     main()
 
-# with open('C:\\Users\\marco\\OneDrive\\Desktop\\Planisuss\\ex.txt', 'w') as file:
-#     original_stdout = sys.stdout
-#     sys.stdout = file
-#     run()
-#     sys.stdout = original_stdout
+with open('C:\\Users\\marco\\OneDrive\\Desktop\\Planisuss\\ex.txt', 'w') as file:
+    original_stdout = sys.stdout
+    sys.stdout = file
+    run()
+    sys.stdout = original_stdout
 
 run()

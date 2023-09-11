@@ -12,8 +12,8 @@ from constants import MAX_ENERGY, MAX_LIFE, AGING, MIN_SOCIAL_ATTITUDE
 from animals.animal import Animal
 
 class Erbast(Animal):
-    def __init__(self, cell, energy = None):
-        super().__init__(cell, energy)
+    def __init__(self, cell, energy = None, lifetime = None, socialAttitude = None):
+        super().__init__(cell, energy, lifetime, socialAttitude)
     #     self.cell = cell
     #     self.lifetime = self.setLifetime()
     #     self.socialAttitude = self.setSocialAttitude()

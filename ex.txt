@@ -1,20 +1,345 @@
 . . . . . . . . . . 
-. G . G . G G G . . 
-. G . . G G . G G . 
-. . . G . G G . G . 
-. G G G . . . G . . 
-. . G . G . . G G . 
-. . . . . . G G G . 
-. G . G . G . G . . 
-. . G G . . . . G . 
+. G G . . G G G . . 
+. G . G G G G . G . 
+. G G . G G G G G . 
+. . G . G G G G G . 
+. G G G G G . G G . 
+. G . G G G G G . . 
+. G G G G G G G G . 
+. G . . G G G G G . 
 . . . . . . . . . . 
-c_1_1
-c_1_3
-c_1_5
-c_1_6
-c_1_7
-c_2_4
-c_4_1
-c_4_3
-c_5_2
-c_6_8
+--------------DAY 1
+c_1_1 has target c_1_2
+c_1_2 has target c_2_3
+c_1_5 has target c_2_5
+c_1_6 has target c_2_5
+c_1_7 has target c_2_8
+c_2_3 has target c_3_4
+c_2_5 has target c_3_6
+c_2_8 has target c_1_7
+c_3_4 has target c_2_5
+c_3_5 has target c_3_6
+c_3_6 has target c_4_6
+c_3_8 has target c_2_8
+c_4_2 has target c_5_3
+c_4_5 has target c_3_6
+c_4_6 has target c_3_6
+c_4_7 has target c_3_6
+c_4_8 has target c_3_8
+c_5_1 has target c_5_2
+c_5_3 has target c_5_2
+c_5_4 has target c_5_3
+c_5_5 has target c_4_6
+c_5_8 has target c_5_7
+c_6_3 has target c_7_3
+c_6_7 has target c_7_7
+c_7_1 has target c_8_1
+c_7_2 has target c_8_1
+c_7_3 has target c_7_4
+c_7_4 has target c_7_3
+c_7_5 has target c_7_4
+c_7_6 has target c_7_7
+c_7_7 has target c_7_6
+c_8_4 has target c_7_3
+c_8_7 has target c_7_7
+--------------DAY 2
+c_1_2 has target c_2_3
+c_2_3 has target c_3_4
+c_2_5 has target c_3_6
+c_2_8 has target c_1_7
+c_3_5 has target c_3_6
+c_3_6 has target c_4_6
+c_3_8 has target c_2_8
+c_4_6 has target c_3_6
+c_4_7 has target c_3_6
+c_4_8 has target c_3_8
+c_5_1 has target c_5_2
+c_5_3 has target c_5_2
+c_5_4 has target c_5_3
+c_5_5 has target c_4_6
+c_5_7 has target c_4_6
+c_6_3 has target c_7_3
+c_7_1 has target c_8_1
+c_7_4 has target c_7_3
+c_7_6 has target c_7_7
+c_7_7 has target c_7_6
+c_8_1 has target c_7_1
+c_8_4 has target c_7_3
+--------------DAY 3
+c_1_2 has target c_2_3
+c_1_7 has target c_2_8
+c_2_3 has target c_3_4
+c_3_6 has target c_4_6
+c_3_8 has target c_2_8
+c_4_6 has target c_3_6
+c_4_7 has target c_3_6
+c_4_8 has target c_3_8
+c_5_1 has target c_5_2
+c_5_4 has target c_5_3
+c_5_5 has target c_4_6
+c_5_7 has target c_4_6
+c_7_4 has target c_7_3
+c_7_6 has target c_8_5
+c_8_1 has target c_7_1
+c_8_4 has target c_7_3
+--------------DAY 4
+c_1_2 has target c_2_3
+c_1_7 has target c_2_8
+c_2_3 has target c_3_4
+c_2_8 has target c_1_7
+c_3_8 has target c_2_8
+c_4_6 has target c_3_6
+c_4_7 has target c_3_6
+c_5_1 has target c_5_2
+c_5_4 has target c_5_3
+c_5_5 has target c_4_6
+c_7_1 has target c_8_1
+c_7_4 has target c_7_3
+c_7_6 has target c_8_5
+c_8_4 has target c_7_3
+--------------DAY 5
+c_1_2 has target c_2_3
+c_1_7 has target c_2_8
+c_2_3 has target c_3_4
+c_2_8 has target c_1_7
+c_3_6 has target c_2_5
+c_4_6 has target c_3_6
+c_4_7 has target c_3_6
+c_5_1 has target c_5_2
+c_5_4 has target c_5_3
+c_5_5 has target c_4_6
+c_7_3 has target c_7_4
+c_8_4 has target c_7_3
+--------------DAY 6
+c_1_2 has target c_2_3
+c_1_7 has target c_2_8
+c_2_3 has target c_3_4
+c_2_8 has target c_3_8
+c_3_6 has target c_2_5
+c_4_6 has target c_3_6
+c_4_7 has target c_3_6
+c_5_1 has target c_5_2
+c_5_4 has target c_5_3
+c_5_5 has target c_4_6
+c_7_3 has target c_7_4
+c_7_4 has target c_7_3
+c_8_4 has target c_7_3
+--------------DAY 7
+c_1_2 has target c_2_3
+c_2_3 has target c_3_4
+c_2_8 has target c_3_8
+c_3_4 has target c_2_5
+c_3_8 has target c_2_8
+c_4_6 has target c_3_6
+c_4_7 has target c_3_6
+c_5_1 has target c_5_2
+c_5_4 has target c_5_3
+c_5_5 has target c_4_6
+c_7_4 has target c_7_3
+c_8_4 has target c_7_3
+--------------DAY 8
+c_1_2 has target c_2_3
+c_2_3 has target c_3_4
+c_2_8 has target c_1_7
+c_3_4 has target c_2_5
+c_3_8 has target c_2_8
+c_4_6 has target c_3_6
+c_5_1 has target c_5_2
+c_5_4 has target c_5_3
+c_5_5 has target c_4_6
+c_7_4 has target c_7_3
+c_8_4 has target c_7_3
+--------------DAY 9
+c_1_2 has target c_2_3
+c_2_8 has target c_1_7
+c_3_4 has target c_2_5
+c_3_8 has target c_2_8
+c_4_6 has target c_3_6
+c_5_1 has target c_5_2
+c_5_4 has target c_5_3
+c_5_5 has target c_4_6
+c_7_3 has target c_7_4
+c_7_4 has target c_7_3
+c_8_4 has target c_7_3
+--------------DAY 10
+c_1_2 has target c_2_3
+c_1_7 has target c_2_8
+c_2_8 has target c_1_7
+c_3_4 has target c_2_5
+c_3_8 has target c_2_8
+c_4_6 has target c_3_6
+c_5_1 has target c_5_2
+c_5_4 has target c_5_3
+c_5_5 has target c_4_6
+c_7_4 has target c_7_3
+c_8_4 has target c_7_3
+--------------DAY 11
+c_1_2 has target c_2_3
+c_2_8 has target c_1_7
+c_3_8 has target c_2_8
+c_4_6 has target c_3_6
+c_5_1 has target c_5_2
+c_5_5 has target c_4_6
+c_7_4 has target c_7_3
+c_8_4 has target c_7_3
+--------------DAY 12
+c_1_2 has target c_2_3
+c_1_7 has target c_2_8
+c_2_8 has target c_1_7
+c_3_8 has target c_2_8
+c_4_6 has target c_3_6
+c_5_1 has target c_5_2
+c_5_5 has target c_4_6
+c_7_3 has target c_7_4
+c_8_4 has target c_7_3
+--------------DAY 13
+c_1_2 has target c_2_3
+c_1_7 has target c_2_8
+c_2_8 has target c_1_7
+c_3_8 has target c_2_8
+c_4_6 has target c_3_6
+c_5_1 has target c_5_2
+c_5_5 has target c_4_6
+c_7_3 has target c_7_4
+c_8_4 has target c_7_3
+--------------DAY 14
+c_1_2 has target c_2_3
+c_2_8 has target c_1_7
+c_3_8 has target c_2_8
+c_4_6 has target c_3_6
+c_5_1 has target c_5_2
+c_5_5 has target c_4_6
+c_7_3 has target c_7_4
+c_8_4 has target c_7_4
+--------------DAY 15
+c_1_2 has target c_2_3
+c_1_7 has target c_1_6
+c_2_8 has target c_1_7
+c_3_8 has target c_2_8
+c_4_6 has target c_3_6
+c_5_1 has target c_5_2
+c_5_5 has target c_4_6
+c_7_3 has target c_7_4
+c_8_4 has target c_7_4
+--------------DAY 16
+c_1_2 has target c_2_3
+c_1_6 has target c_2_5
+c_1_7 has target c_2_8
+c_2_5 has target c_3_6
+c_2_8 has target c_1_7
+c_3_8 has target c_2_8
+c_4_6 has target c_3_6
+c_5_1 has target c_5_2
+c_5_5 has target c_4_6
+c_7_3 has target c_7_4
+c_8_4 has target c_7_4
+--------------DAY 17
+c_1_2 has target c_2_3
+c_1_6 has target c_2_5
+c_2_8 has target c_1_7
+c_3_8 has target c_2_8
+c_4_6 has target c_3_6
+c_5_1 has target c_5_2
+c_5_5 has target c_4_6
+c_7_3 has target c_7_4
+c_8_4 has target c_7_4
+--------------DAY 18
+c_1_2 has target c_2_3
+c_1_6 has target c_2_5
+c_2_8 has target c_1_7
+c_3_8 has target c_2_8
+c_4_6 has target c_3_6
+c_5_1 has target c_5_2
+c_5_5 has target c_4_6
+c_7_3 has target c_7_4
+c_8_4 has target c_7_4
+--------------DAY 19
+c_1_2 has target c_2_3
+c_1_6 has target c_2_5
+c_1_7 has target c_1_6
+c_2_5 has target c_3_6
+c_2_8 has target c_1_7
+c_3_8 has target c_2_8
+c_4_6 has target c_3_6
+c_5_1 has target c_5_2
+c_5_5 has target c_4_6
+c_7_3 has target c_7_4
+c_7_4 has target c_8_5
+c_8_5 has target c_7_4
+--------------DAY 20
+c_1_2 has target c_2_3
+c_1_6 has target c_2_5
+c_1_7 has target c_1_6
+c_2_5 has target c_3_6
+c_2_8 has target c_1_7
+c_3_8 has target c_2_8
+c_4_6 has target c_3_6
+c_5_1 has target c_5_2
+c_5_5 has target c_4_6
+c_7_3 has target c_7_4
+c_8_5 has target c_7_4
+--------------DAY 21
+c_1_2 has target c_2_3
+c_1_6 has target c_2_5
+c_1_7 has target c_1_6
+c_2_8 has target c_1_7
+c_3_8 has target c_2_8
+c_4_6 has target c_3_6
+c_5_1 has target c_5_2
+c_5_5 has target c_5_4
+c_7_3 has target c_7_4
+c_8_5 has target c_7_4
+--------------DAY 22
+c_1_2 has target c_2_3
+c_1_6 has target c_2_5
+c_1_7 has target c_1_6
+c_2_8 has target c_1_7
+c_3_8 has target c_3_7
+c_4_6 has target c_3_6
+c_5_1 has target c_5_2
+c_5_5 has target c_5_4
+c_7_3 has target c_7_4
+c_8_5 has target c_7_4
+--------------DAY 23
+c_1_2 has target c_2_3
+c_1_7 has target c_1_6
+c_2_8 has target c_1_7
+c_3_8 has target c_3_7
+c_4_6 has target c_3_6
+c_5_1 has target c_5_2
+c_5_5 has target c_5_4
+c_7_3 has target c_7_4
+c_7_4 has target c_8_5
+--------------DAY 24
+c_1_2 has target c_2_3
+c_1_7 has target c_1_6
+c_2_8 has target c_1_7
+c_3_8 has target c_3_7
+c_4_6 has target c_3_6
+c_5_1 has target c_5_2
+c_5_5 has target c_5_4
+c_7_3 has target c_7_4
+c_7_4 has target c_8_5
+--------------DAY 25
+c_1_2 has target c_2_3
+c_1_7 has target c_1_6
+c_2_8 has target c_1_7
+c_3_8 has target c_3_7
+c_4_6 has target c_3_6
+c_5_1 has target c_5_2
+c_5_5 has target c_5_4
+c_7_3 has target c_7_4
+c_7_4 has target c_8_5
+--------------DAY 26
+c_1_2 has target c_2_3
+c_1_7 has target c_1_6
+c_2_8 has target c_1_7
+c_3_8 has target c_3_7
+c_4_6 has target c_3_6
+c_5_1 has target c_5_2
+c_5_5 has target c_5_4
+c_7_3 has target c_7_4
+c_7_4 has target c_8_5
+c_8_5 has target c_7_4
+--------------DAY 27
+c_1_2 has target 
