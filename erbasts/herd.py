@@ -66,10 +66,11 @@ class Herd(Group):
     def graze(self, availableEnergy):
         keys = self.sortAnimals()
         for key in keys:
-            self.animals[key].grazes()
-            availableEnergy -= 1
             if availableEnergy <= 0:
-                break
+                self.animals[key].socialAttitude -= 1
+            else:
+                self.animals[key].grazes()
+                availableEnergy -= 1
         return 
     
     # def move(self, targetHerd):

@@ -27,9 +27,9 @@ def setErbastColor(c):
 def setCarvizColor(c):
     return setColor(c,0,0)
 
-def setupMap(ax):
+def setupMap(ax,day):
     plt.cla()
-    ax.set_title("Map")
+    ax.set_title(f'Day {day}')
     cellList = []
     for cellname in cells:
         cellList.append(cells[cellname])
@@ -125,7 +125,12 @@ def setupMap(ax):
 
     # for a in animations:
     #     ax.add_patch(a)
+
+
+    plt.tick_params(left=False, bottom=False, labelleft=False, labelbottom=False)
+
     
+
     return 
     
 

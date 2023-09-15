@@ -49,8 +49,8 @@ class Animal:
         isStill = True
         if self.moved:
             return moves, isStill
-        if self.getSocialAttitude() > MIN_SOCIAL_ATTITUDE and self.getEnergy() > MAX_ENERGY//3:
+        if self.getSocialAttitude() > MIN_SOCIAL_ATTITUDE and random.randint(0,MAX_ENERGY) < self.getEnergy():
             moves = True
-        if self.getSocialAttitude() <= MIN_SOCIAL_ATTITUDE and self.getEnergy() > MAX_ENERGY//3:
+        if self.getSocialAttitude() <= MIN_SOCIAL_ATTITUDE and random.randint(0,MAX_ENERGY) < self.getEnergy():
             isStill = False   
         return moves, isStill
