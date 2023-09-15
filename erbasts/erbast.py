@@ -8,7 +8,7 @@ parent_dir = os.path.abspath(os.path.join(current_dir, ".."))
 sys.path.append(parent_dir)
 
 import random
-from constants import MAX_ENERGY, MAX_LIFE, AGING, MIN_SOCIAL_ATTITUDE
+from constants import parameters
 from animals.animal import Animal
 
 class Erbast(Animal):
@@ -22,14 +22,14 @@ class Erbast(Animal):
     #     self.moved = False
 
     # def setLifetime(self):
-    #     return random.randint(0, MAX_LIFE)
+    #     return random.randint(0, parameters.getMaxLife())
     
     # def setSocialAttitude(self):
     #     return random.random()
     
     # def setInitialEnergy(self, energy):
     #     if energy == None:
-    #         return random.randint(0, MAX_ENERGY)
+    #         return random.randint(0, parameters.getMaxEnergy())
     #     return energy
 
     # def getEnergy(self):
@@ -39,14 +39,14 @@ class Erbast(Animal):
     #     isAlive = True
     #     self.age += 1
     #     if self.age != 0 and self.age%10 == 0:
-    #             self.energy -= AGING
+    #             self.energy -= parameters.getAging()
     #     if self.energy <= 0 or self.age == self.lifetime:
     #         isAlive = False 
     #     return isAlive, self.energy
     
     def grazes(self):
         if not self.moved:
-            if self.energy < MAX_ENERGY:
+            if self.energy < parameters.getMaxEnergy():
                 self.energy += 1
         else:
             self.moved = False   
@@ -60,8 +60,8 @@ class Erbast(Animal):
     #     isStill = True
     #     if self.moved:
     #         return moves, isStill
-    #     if self.socialAttitude > MIN_SOCIAL_ATTITUDE and self.getEnergy() > MAX_ENERGY//3:
+    #     if self.socialAttitude > parameters.getMinSocAtt() and self.getEnergy() > parameters.getMaxEnergy()//3:
     #         moves = True
-    #     if self.socialAttitude <= MIN_SOCIAL_ATTITUDE and self.getEnergy() > MAX_ENERGY//3:
+    #     if self.socialAttitude <= parameters.getMinSocAtt() and self.getEnergy() > parameters.getMaxEnergy()//3:
     #         isStill = False   
     #     return moves, isStill

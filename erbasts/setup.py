@@ -9,7 +9,7 @@ import random
 from cells.setup import cells
 from erbasts.herd import Herd
 from erbasts.erbast import Erbast
-from constants import ERBAST_PROBABILITY
+from constants import parameters
 from keygenerator import generateKey
 
 herds = {}
@@ -21,7 +21,7 @@ def setupHerds():
             key = generateKey()
             h = Herd(cellname)
             herds[key] = h           
-            if random.random() > ERBAST_PROBABILITY:
+            if random.random() > parameters.getErbastProb():
                 erbkey = generateKey()
                 e = Erbast(cellname)
                 h.addAnimal(erbkey, e)

@@ -9,7 +9,7 @@ import random
 from cells.setup import cells
 from carvizes.pride import Pride
 from carvizes.carviz import Carviz
-from constants import CARVIZ_PROBABILITY
+from constants import parameters
 from keygenerator import generateKey
 
 prides = {}
@@ -21,7 +21,7 @@ def setupPrides():
             key = generateKey()
             p = Pride(cellname)
             prides[key] = p           
-            if random.random() > CARVIZ_PROBABILITY:
+            if random.random() > parameters.getCarvizProb():
                 carkey = generateKey()
                 e = Carviz(cellname)
                 p.addAnimal(carkey, e)

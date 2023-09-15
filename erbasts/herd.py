@@ -8,7 +8,7 @@ sys.path.append(parent_dir)
 from erbasts.erbast import Erbast
 from keygenerator import generateKey
 import random
-from constants import MOVE_PROBABILITY, MAX_HERD
+from constants import parameters
 from animals.groups import Group
 
 class Herd(Group):
@@ -75,10 +75,10 @@ class Herd(Group):
     
     # def move(self, targetHerd):
     #     movingErbasts = []
-    #     herdMoves = random.random() > MOVE_PROBABILITY
+    #     herdMoves = random.random() > parameters.getMoveProb()
     #     for key, erbast in self.animals.items():
     #         erbastMoves, erbastIsStill = erbast.willMove()
-    #         if (herdMoves and erbastMoves) or (not herdMoves and not erbastIsStill) and len(targetHerd.erbasts) < MAX_HERD:
+    #         if (herdMoves and erbastMoves) or (not herdMoves and not erbastIsStill) and len(targetHerd.erbasts) < parameters.getMaxHerd():
     #             movingErbasts.append(key)
     #             # print('erbast is in cell', erbast.cell, 'with energy', erbast.getEnergy())
     #             erbast.moves()

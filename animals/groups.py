@@ -9,7 +9,7 @@ from erbasts.erbast import Erbast
 from carvizes.carviz import Carviz
 from keygenerator import generateKey
 import random
-from constants import MOVE_PROBABILITY, MAX_HERD, MAX_PRIDE, MAX_LIFE
+from constants import parameters
 
 class Group:
     def __init__(self, cell):
@@ -60,10 +60,11 @@ class Group:
             isAlive, energy, lifetime = animal.grows()
             if not isAlive:
                 dead.append(key)
-                if (self.getNumAnimal() < MAX_HERD-1 and isinstance(animal, Erbast)) or (self.getNumAnimal() < MAX_PRIDE-1 and isinstance(animal, Carviz)) and energy > 0:
+                max = parameters.getMaxHerd()-1 if isinstance(animal, Erbast) else parameters.getMaxPride()-1
+                if self.getNumAnimal() < max and energy > 0:
                     energy1 = random.randint(0,energy)
                     energy2 = energy - energy1
-                    lifetime1 = random.randint(0, min(MAX_LIFE, 2*lifetime))
+                    lifetime1 = random.randint(0, min(parameters.getMaxLife(), 2*lifetime))
                     lifetime2 = 2*lifetime-lifetime1
                     socialAtt1 = random.uniform(0, min(1, 2*animal.getSocialAttitude()))
                     socialAtt2 = 2*animal.getSocialAttitude()-socialAtt1
@@ -90,10 +91,10 @@ class Group:
         #         erbastsList.append(animal)
         # if len(erbastsList) > 0:
         #     print(erbastsList[0].cell,'has target', targetGroup.cell)
-        groupMoves = random.random() > MOVE_PROBABILITY
+        groupMoves = random.random() > parameters.getMoveProb()
         for key, animal in self.animals.items():
             animalMoves, animalIsStill = animal.willMove()
-            max = MAX_HERD if isinstance(animal, Erbast) else MAX_PRIDE
+            max = parameters.getMaxHerd() if isinstance(animal, Erbast) else parameters.getMaxPride()
             if ((groupMoves and animalMoves) or (not groupMoves and not animalIsStill)) and targetGroup.getNumAnimal() < max:
                 movingAnimal.append(key)
                 # print('animal is in cell', animal.cell, 'with energy', animal.getEnergy())

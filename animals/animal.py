@@ -1,5 +1,5 @@
 import random
-from constants import MAX_ENERGY, MAX_LIFE, AGING, MIN_SOCIAL_ATTITUDE
+from constants import parameters
 
 class Animal:
     def __init__(self, cell, energy = None, lifetime = None, socialAttitude = None):
@@ -12,7 +12,7 @@ class Animal:
 
     def setLifetime(self, lifetime):
         if lifetime == None:
-            return random.randint(0, MAX_LIFE)
+            return random.randint(0, parameters.getMaxLife())
         return lifetime
     
     def setSocialAttitude(self, socialAttitude):
@@ -22,7 +22,7 @@ class Animal:
     
     def setInitialEnergy(self, energy):
         if energy == None:
-            return random.randint(0, MAX_ENERGY)
+            return random.randint(0, parameters.getMaxEnergy())
         return energy
 
     def getEnergy(self):
@@ -35,7 +35,7 @@ class Animal:
         isAlive = True
         self.age += 1
         if self.age != 0 and self.age%10 == 0:
-                self.energy -= AGING
+                self.energy -= parameters.getAging()
         if self.energy <= 0 or self.age == self.lifetime:
             isAlive = False 
         return isAlive, self.energy, self.lifetime
@@ -49,8 +49,8 @@ class Animal:
         isStill = True
         if self.moved:
             return moves, isStill
-        if self.getSocialAttitude() > MIN_SOCIAL_ATTITUDE and random.randint(0,MAX_ENERGY) < self.getEnergy():
+        if self.getSocialAttitude() > parameters.getMinSocAtt() and random.randint(0,parameters.getMaxEnergy()) <= self.getEnergy():
             moves = True
-        if self.getSocialAttitude() <= MIN_SOCIAL_ATTITUDE and random.randint(0,MAX_ENERGY) < self.getEnergy():
+        if self.getSocialAttitude() <= parameters.getMinSocAtt() and random.randint(0,parameters.getMaxEnergy()) <= self.getEnergy():
             isStill = False   
         return moves, isStill

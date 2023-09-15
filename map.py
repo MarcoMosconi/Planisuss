@@ -10,7 +10,7 @@ from matplotlib.colors import ListedColormap
 import matplotlib.patches as pat
 import numpy as np
 from cells.setup import cells
-from constants import NUMCELLS, MAX_ENERGY, MAX_DENSITY, MAX_HERD
+from constants import parameters
 from vegetobs.setup import vegetobs
 from erbasts.setup import herds
 from carvizes.setup import prides
@@ -38,18 +38,18 @@ def setupMap(ax,day):
     densityLists = []
     herdLists = []
     prideLists = []
-    for i in range(0, NUMCELLS):
+    for i in range(0, parameters.getNumcells()):
         columnMapList = []
         columnDensityList = []
         columnHerdList = []
         columnPrideList = []
-        for j in range(i, len(cellList), NUMCELLS):
+        for j in range(i, len(cellList), parameters.getNumcells()):
             cell = cellList[j]
             if cell.isGround():
                 columnMapList.append(1)
                 for cellname in vegetobs:
                     if cells[cellname] == cell:
-                        columnDensityList.append(vegetobs[cellname].getDensity()/MAX_DENSITY)
+                        columnDensityList.append(vegetobs[cellname].getDensity()/parameters.getMaxDensity())
                 for key in herds:
                     if cells[herds[key].cell] == cell:
                         columnHerdList.append(herds[key])
@@ -81,11 +81,11 @@ def setupMap(ax,day):
     # fig, ax = plt.subplots()
     colors = ['lightcyan', 'saddlebrown']
     cmap = ListedColormap(colors)
-    mapCells = ax.imshow(mapLists, cmap=cmap, extent=[0,NUMCELLS,0,NUMCELLS])
-    # densityCells = ax.imshow(densityLists, extent=[0,NUMCELLS,0,NUMCELLS])
+    mapCells = ax.imshow(mapLists, cmap=cmap, extent=[0,parameters.getNumcells(),0,parameters.getNumcells()])
+    # densityCells = ax.imshow(densityLists, extent=[0,parameters.getNumcells(),0,parameters.getNumcells()])
 
     numCell = len(mapLists)
-    # cellSize = int(NUMCELLS/numCell)
+    # cellSize = int(parameters.getNumcells()/numCell)
 
     for y in range(numCell):
         plt.axhline(y * 1, color='black', linewidth=0.2)
@@ -102,24 +102,24 @@ def setupMap(ax,day):
             densityValue = densityLists[row][col]
             # print('map value', mapLists[row][col], 'and density value', densityValue)
             # if densityValue > 0:
-            square = pat.Rectangle((col, NUMCELLS-1-row), densityValue, densityValue, color = 'green')
+            square = pat.Rectangle((col, parameters.getNumcells()-1-row), densityValue, densityValue, color = 'green')
             animations.append(square)
             ax.add_patch(square)
             herd = herdLists[row][col]
             if herd != 0:
                 # totErb = herd.getNumAnimal()
-                # erbColor = 0 if totErb == 0 else herd.getTotalEnergy()/(MAX_ENERGY*totErb)
-                # circle = pat.Circle((col+0.5, NUMCELLS-0.5-row), 0.5*totErb/MAX_HERD, color = setErbastColor(erbColor))
+                # erbColor = 0 if totErb == 0 else herd.getTotalEnergy()/(parameters.getMaxEnergy()*totErb)
+                # circle = pat.Circle((col+0.5, parameters.getNumcells()-0.5-row), 0.5*totErb/parameters.getMaxHerd(), color = setErbastColor(erbColor))
                 # animations.append(circle)
                 # ax.add_patch(circle)
                 for key in herd.animals:
-                    # print((herd.animals[key].getEnergy()/MAX_ENERGY))
-                    circle = pat.Circle((col+random.uniform(0.15,0.85), NUMCELLS-random.uniform(0.15,0.85)-row), 0.15, color = setErbastColor(herd.animals[key].getEnergy()/MAX_ENERGY))
+                    # print((herd.animals[key].getEnergy()/parameters.getMaxEnergy()))
+                    circle = pat.Circle((col+random.uniform(0.15,0.85), parameters.getNumcells()-random.uniform(0.15,0.85)-row), 0.15, color = setErbastColor(herd.animals[key].getEnergy()/parameters.getMaxEnergy()))
                     ax.add_patch(circle)
             pride = prideLists[row][col]
             if pride != 0:
                 for key in pride.animals:
-                    triangle = pat.RegularPolygon((col+random.uniform(0.15,0.85), NUMCELLS-random.uniform(0.15,0.85)-row), 3, 0.15, 0.0, color = setCarvizColor(pride.animals[key].getEnergy()/MAX_ENERGY))
+                    triangle = pat.RegularPolygon((col+random.uniform(0.15,0.85), parameters.getNumcells()-random.uniform(0.15,0.85)-row), 3, 0.15, 0.0, color = setCarvizColor(pride.animals[key].getEnergy()/parameters.getMaxEnergy()))
                     ax.add_patch(triangle)
         # print('------------------------')
 

@@ -8,7 +8,7 @@ parent_dir = os.path.abspath(os.path.join(current_dir, ".."))
 sys.path.append(parent_dir)
 
 import random
-from constants import NUMCELLS, CELL_PROBABILITY
+from constants import parameters
 
 #TYPES = ["Water", "Ground"]
 
@@ -25,11 +25,11 @@ class Cell:
         return self.type 
 
     def setType(self):
-        if self.x == 0 or self.x == (NUMCELLS -1): #boundary cells are always water
+        if self.x == 0 or self.x == (parameters.getNumcells() -1): #boundary cells are always water
             return "Water" 
-        if self.y == 0 or self.y == (NUMCELLS -1):
+        if self.y == 0 or self.y == (parameters.getNumcells() -1):
             return "Water"
-        if random.random() > CELL_PROBABILITY:
+        if random.random() > parameters.getCellProb():
             return "Ground"
         else:
             return "Water"
