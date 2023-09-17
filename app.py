@@ -40,11 +40,12 @@ def setup():
     # plt.imshow(A, cmap=cmap)
 
 isRunning = True
-pause = 0.01
+pause = 0.04
 
 def main():
     # fig, ((ax, bx),(cx,dx)) = plt.subplots(2,2)
     fig, dx = plt.subplots()
+    fig.suptitle("Map")
     # ax.set_title("Total Daily Vegetob Density")
     # bx.set_title("Total Daily Erbast Number")
     # cx.set_title("Total Daily Carviz Number")
@@ -72,7 +73,7 @@ def main():
         root1.update()
         # figManager = plt.get_current_fig_manager()
         # figManager.full_screen_toggle()
-        # print(pause)
+        print(pause)
         plt.pause(pause)
     plt.show()
     root1.destroy()
@@ -96,12 +97,39 @@ def startSimulation():
     startButton.forget()
     settingButton.forget()
     root1.title('Options')
+    root1.geometry("270x80")
     speedupButton.pack(side='right')
     slowdownButton.pack(side='left')
     pauseButton.pack()
     run()
 
+def pauseSimulation():
+    pauseButton.forget()
+    resumeButton.pack()
+    global isRunning
+    isRunning = False
+
+def resumeSimulation():
+    resumeButton.forget()
+    pauseButton.pack()
+    global isRunning
+    isRunning = True
+    
+def speedupSimulation():
+    global pause
+    if pause > 0.01:
+        pause = pause/2
+
+def slowdownSimulation():
+    global pause 
+    pause = pause*2
+
 startButton['command'] = startSimulation
+pauseButton['command'] = pauseSimulation
+resumeButton['command'] = resumeSimulation
+speedupButton['command'] = speedupSimulation
+slowdownButton['command'] = slowdownSimulation
+
 
 root1.mainloop()
 

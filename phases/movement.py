@@ -15,23 +15,31 @@ def movement():
     for key in herds:
         herd = herds[key]
         cellname = herd.cell
+        prevCells = herd.prevCells
         num = herd.getNumAnimal()
         if num > 0:
-            targetCellname, _, _ = findPrey(cellname)
+            targetCellname, _, _ = findPrey(cellname, prevCells)
             if targetCellname != cellname:
                 for key in herds:
                     if targetCellname == herds[key].cell:
                         herd.move(herds[key])
                         break
+    for key in herds:
+        herd= herds[key]
+        herd.prevCells = []
+        for cell in herd.currInCells:
+            herd.prevCells.append(cell)
+        herd.currInCells = []
+
     
     newPrides = []
-
     for key in prides:
         pride = prides[key]
         cellname = pride.cell
+        prevCells = pride.prevCells
         num = pride.getNumAnimal()
         if num > 0:
-            _, targetCellname, _ = findPrey(cellname)
+            _, targetCellname, _ = findPrey(cellname, prevCells)
             if targetCellname != cellname:
                 targetPride = Pride(targetCellname)
                 newPrides.append(targetPride)

@@ -10,7 +10,7 @@ from vegetobs.setup import vegetobs
 from erbasts.setup import herds
 from parameters import parameters
 
-def findPrey(cellname):
+def findPrey(cellname, prevCells):
     density = 0
     neighbors = {}
     x0,y0 = cells[cellname].getCoordinates()
@@ -25,6 +25,8 @@ def findPrey(cellname):
                 continue
             currCell = setCellname(x,y)
             if cells[currCell].getType() == "Water":
+                continue
+            if currCell in prevCells:
                 continue
             neighbors[currCell] = vegetobs[currCell]
             currDensity = vegetobs[currCell].getDensity()

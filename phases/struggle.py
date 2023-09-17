@@ -38,6 +38,12 @@ def struggle():
                 else:
                     fight(joiningPrides)
             hunt(prides[joiningPrides[0]])
+    for key in prides:
+        pride= prides[key]
+        pride.prevCells = []        
+        for cell in pride.currInCells:
+            pride.prevCells.append(cell)
+        pride.currInCells = []
 
                     
 

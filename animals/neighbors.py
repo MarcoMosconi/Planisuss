@@ -13,14 +13,16 @@ from carvizes.setup import prides
 def neighbors():
     for key in herds:
         cellname = herds[key].cell
-        _, _, killHerd = findPrey(cellname)
+        prevCells = herds[key].prevCells
+        _, _, killHerd = findPrey(cellname,prevCells)
         if killHerd:
             # print('kill', cellname)
             herds[key].kill()
 
     for key in prides:
         cellname = prides[key].cell
-        _, _, killHerd = findPrey(cellname)
+        prevCells = prides[key].prevCells
+        _, _, killHerd = findPrey(cellname,prevCells)
         if killHerd:
             # print('kill', cellname)
             prides[key].kill()

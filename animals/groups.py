@@ -15,6 +15,8 @@ class Group:
     def __init__(self, cell):
         self.cell = cell
         self.animals = {}
+        self.prevCells = []
+        self.currInCells = []
 
     def getAnimals(self):
         return self.animals
@@ -85,13 +87,15 @@ class Group:
     
     def move(self, targetGroup):
         movingAnimal = []
-        erbastsList = []
+        # erbastsList = []
         # for key, animal in self.animals.items():
         #     if isinstance(animal, Erbast):
         #         erbastsList.append(animal)
         # if len(erbastsList) > 0:
         #     print(erbastsList[0].cell,'has target', targetGroup.cell)
         groupMoves = random.random() > parameters.getMoveProb()
+        if groupMoves:
+            targetGroup.currInCells.append(self.cell)
         for key, animal in self.animals.items():
             animalMoves, animalIsStill = animal.willMove()
             max = parameters.getMaxHerd() if isinstance(animal, Erbast) else parameters.getMaxPride()

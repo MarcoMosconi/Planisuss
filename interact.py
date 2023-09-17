@@ -28,40 +28,41 @@ def submit():
         setattr(parameters,parameter,newvalue)
 
 def close():
-    global info 
     root1.geometry("700x600")
     root1.title('Menu')
     closeButton.forget()
     listBox.forget()
     submitButton.forget()
-    info = information()
+    info.set_html(information())
     info.pack(fill="both", expand=True, pady=5, padx=5)
     startButton.pack(side='left', padx=100, pady=5)
     settingButton.pack(side='right', padx=100, pady=5)
 
-def pauseSimulation():
-    pauseButton.forget()
-    resumeButton.pack()
-    global isRunning
-    isRunning = False
+# def pauseSimulation():
+#     pauseButton.forget()
+#     resumeButton.pack()
+#     global isRunning
+#     isRunning = False
 
-def resumeSimulation():
-    resumeButton.forget()
-    pauseButton.pack()
-    global isRunning
-    isRunning = True
+# def resumeSimulation():
+#     resumeButton.forget()
+#     pauseButton.pack()
+#     global isRunning
+#     isRunning = True
     
-def speedupSimulation():
-    global pause
-    if pause > 0.01:
-        pause = pause/2
+# def speedupSimulation():
+#     global pause
+#     if pause > 0.01:
+#         pause = pause/2
+#     return pause
 
-def slowdownSimulation():
-    global pause 
-    pause = pause*2
+# def slowdownSimulation():
+#     global pause 
+#     pause = pause*2
+#     return pause
 
 def information():
-    inf = HTMLLabel(root1, html=f"""
+    html = f"""
         <div style="background-color: #cdcdcd;">
             <h1>Welcome to Planisuss</h1>
             <h2>Parameters</h2>
@@ -94,20 +95,20 @@ def information():
                 <li> Carviz population over time</li>
             </ul>
         </div>
-        """)
-    return inf
+        """
+    return html
+   
+startButton = tk.Button(root1, text="Start", font=('comic sans', 16), border="5px")
+settingButton = tk.Button(root1,text="Change Settings", command=settingsChange, font=('comic sans', 16), border="5px")
+pauseButton = tk.Button(root1,text="⏯️", font=('comic sans', 30), border="3px")
+resumeButton = tk.Button(root1,text="⏯", font=('comic sans', 30), border="3px")
+speedupButton = tk.Button(root1, text="⏩", font=('comic sans', 30), border="3px")
+slowdownButton = tk.Button(root1, text="⏪", font=('comic sans', 30), border="3px")
+submitButton = tk.Button(root1, text="Submit",command=submit, font=('comic sans', 16), border="3px") 
+closeButton = tk.Button(root1, text="Close",command=close, font=('comic sans', 16), border="3px") 
+info = HTMLLabel(root1, html=information())
 
-startButton = tk.Button(root1, text="Start", font=('comic sans', 16))
-settingButton = tk.Button(root1,text="Change Settings", command=settingsChange, font=('comic sans', 16))
-pauseButton = tk.Button(root1,text="⏯️", command=pauseSimulation, font=('comic sans', 30))
-resumeButton = tk.Button(root1,text="⏯", command=resumeSimulation, font=('comic sans', 30))
-speedupButton = tk.Button(root1, text="⏩", command=speedupSimulation, font=('comic sans', 30))
-slowdownButton = tk.Button(root1, text="⏪", command=slowdownSimulation, font=('comic sans', 30))
-submitButton = tk.Button(root1, text="Submit",command=submit, font=('comic sans', 16)) 
-closeButton = tk.Button(root1, text="Close",command=close, font=('comic sans', 16)) 
-info = information()
-
-listBox = tk.Listbox(root1, font=('comic sans', 16), width=20)
+listBox = tk.Listbox(root1, bg="#cdcdcd", font=('comic sans', 16), width=20)
 listBox.insert(1,"Aging")
 listBox.insert(2,"Carviz_Probability")
 listBox.insert(3,"Cell_Probability")
