@@ -1,6 +1,6 @@
 from cells.setup import setupCells
 from vegetobs.setup import setupVegetobs
-from constants import parameters
+from parameters import parameters
 from phases.growing import growing
 import matplotlib.pyplot as plt
 import numpy as np
@@ -13,13 +13,9 @@ from phases.movement import movement
 from phases.struggle import struggle
 from map import setupMap
 from random import seed
-import tkinter as tk
-from tkinter import simpledialog
 import time
+from interact import *
 import sys
-
-root1 = tk.Tk()
-root1.title('Menu')
 
 seed(1)
 
@@ -76,7 +72,7 @@ def main():
         root1.update()
         # figManager = plt.get_current_fig_manager()
         # figManager.full_screen_toggle()
-        print(pause)
+        # print(pause)
         plt.pause(pause)
     plt.show()
     root1.destroy()
@@ -96,101 +92,16 @@ def run():
     main()
 
 def startSimulation():
+    info.forget()
     startButton.forget()
     settingButton.forget()
     root1.title('Options')
     speedupButton.pack(side='right')
     slowdownButton.pack(side='left')
     pauseButton.pack()
-    root1.bind("<Left>",slowdownSimulation)
-    root1.bind("<Right>",speedupSimulation)
-    root1.bind("<space>",pauseSimulation)
     run()
 
-def settingsChange():
-    startButton.forget()
-    settingButton.forget()
-    root1.title('Parameters')
-    listBox.pack()
-    submitButton.pack(side='left')
-    closeButton.pack(side='right')
-    root1.bind("<Return>",submit)
-    root1.bind("<Escape>",close)
-    # newNumcells = simpledialog.askinteger("Contants", "Enter new numcells", initialvalue=parameters.parameters.getNumcells())
-    # newCellProb = simpledialog.askfloat("Constants", "Enter new cell propability", initialvalue=parameters.parameters.getCellProb())
-
-def submit(event):
-    parameter = listBox.get(listBox.curselection())
-    value = getattr(parameters, parameter)
-    if type(value) == int:
-        newvalue = simpledialog.askinteger("Parameters", f"Enter new {parameter}",initialvalue=value)
-    else:
-        newvalue = simpledialog.askfloat("Parameters", f"Enter new {parameter}",initialvalue=value)
-    if newvalue is not None:
-        setattr(parameters,parameter,newvalue)
-    
-
-def close(event):
-    closeButton.forget()
-    listBox.forget()
-    submitButton.forget()
-    startButton.pack(side='left')
-    settingButton.pack(side='right')
-
-
-def pauseSimulation(event):
-    pauseButton.forget()
-    resumeButton.pack()
-    global isRunning
-    isRunning = False
-    root1.bind("<space>",resumeSimulation)
-
-def resumeSimulation(event):
-    resumeButton.forget()
-    pauseButton.pack()
-    global isRunning
-    isRunning = True
-    root1.bind("<space>",pauseSimulation)
-    
-def speedupSimulation(event):
-    global pause
-    if pause > 0.01:
-        pause = pause/2
-
-def slowdownSimulation(event):
-    global pause 
-    pause = pause*2
-
-startButton = tk.Button(root1, text="Start", command=startSimulation, font=('comic sans', 30))
-settingButton = tk.Button(root1,text="Change Settings", command=settingsChange, font=('comic sans', 30))
-pauseButton = tk.Button(root1,text="⏯️", command=pauseSimulation, font=('comic sans', 30))
-resumeButton = tk.Button(root1,text="⏯", command=resumeSimulation, font=('comic sans', 30))
-speedupButton = tk.Button(root1, text="⏩", command=speedupSimulation, font=('comic sans', 30))
-slowdownButton = tk.Button(root1, text="⏪", command=slowdownSimulation, font=('comic sans', 30))
-submitButton = tk.Button(root1, text="Submit",command=submit) 
-closeButton = tk.Button(root1, text="Close",command=close) 
-
-listBox = tk.Listbox(root1, font=('comic sans', 20), width=22)
-listBox.insert(1,"Numcells")
-listBox.insert(2,"Cell_Probability")
-listBox.insert(3,"Growing")
-listBox.insert(4,"Numdays")
-listBox.insert(5,"Max_Density")
-listBox.insert(6,"Max_Energy")
-listBox.insert(7,"Max_Life")
-listBox.insert(8,"Max_Herd")
-listBox.insert(9,"Max_Pride")
-listBox.insert(10,"Erbast_Probability")
-listBox.insert(11,"Carviz_Probability")
-listBox.insert(12,"Aging")
-listBox.insert(13,"Neighborhood")
-listBox.insert(14,"Min_Social_Attitude")
-listBox.insert(15,"Move_Probability")
-
-listBox.config(height=listBox.size())
-
-startButton.pack(side="left")
-settingButton.pack(side="right")
+startButton['command'] = startSimulation
 
 root1.mainloop()
 

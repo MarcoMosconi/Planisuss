@@ -9,7 +9,7 @@ from erbasts.erbast import Erbast
 from carvizes.carviz import Carviz
 from keygenerator import generateKey
 import random
-from constants import parameters
+from parameters import parameters
 
 class Group:
     def __init__(self, cell):

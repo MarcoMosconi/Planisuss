@@ -1,5 +1,5 @@
 import random
-from constants import parameters
+from parameters import parameters
 
 class Animal:
     def __init__(self, cell, energy = None, lifetime = None, socialAttitude = None):

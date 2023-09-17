@@ -7,7 +7,7 @@ current_dir = os.path.dirname(__file__)
 parent_dir = os.path.abspath(os.path.join(current_dir, ".."))
 sys.path.append(parent_dir)
 
-from constants import parameters
+from parameters import parameters
 from cells.cell import Cell
 
 cells = {}

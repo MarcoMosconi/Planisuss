@@ -10,7 +10,7 @@ from matplotlib.colors import ListedColormap
 import matplotlib.patches as pat
 import numpy as np
 from cells.setup import cells
-from constants import parameters
+from parameters import parameters
 from vegetobs.setup import vegetobs
 from erbasts.setup import herds
 from carvizes.setup import prides

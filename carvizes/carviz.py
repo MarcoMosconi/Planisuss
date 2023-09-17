@@ -6,7 +6,7 @@ parent_dir = os.path.abspath(os.path.join(current_dir, ".."))
 sys.path.append(parent_dir)
 
 from animals.animal import Animal
-from constants import parameters
+from parameters import parameters
 
 class Carviz(Animal):
    def __init__(self, cell, energy = None, lifetime = None, socialAttitude = None):

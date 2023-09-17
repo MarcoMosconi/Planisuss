@@ -8,7 +8,7 @@ sys.path.append(parent_dir)
 from cells.setup import cells, setCellname
 from vegetobs.setup import vegetobs
 from erbasts.setup import herds
-from constants import parameters
+from parameters import parameters
 
 def findPrey(cellname):
     density = 0

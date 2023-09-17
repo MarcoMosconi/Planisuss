@@ -8,7 +8,7 @@ parent_dir = os.path.abspath(os.path.join(current_dir, ".."))
 sys.path.append(parent_dir)
 
 import random
-from constants import parameters
+from parameters import parameters
 import math
 
 class Vegetob:

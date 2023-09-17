@@ -9,7 +9,7 @@ import random
 from cells.setup import cells
 from carvizes.pride import Pride
 from carvizes.carviz import Carviz
-from constants import parameters
+from parameters import parameters
 from keygenerator import generateKey
 
 prides = {}

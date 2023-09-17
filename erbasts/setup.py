@@ -9,7 +9,7 @@ import random
 from cells.setup import cells
 from erbasts.herd import Herd
 from erbasts.erbast import Erbast
-from constants import parameters
+from parameters import parameters
 from keygenerator import generateKey
 
 herds = {}

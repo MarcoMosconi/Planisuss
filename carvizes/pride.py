@@ -8,7 +8,7 @@ sys.path.append(parent_dir)
 from erbasts.erbast import Erbast
 from keygenerator import generateKey
 import random
-from constants import parameters
+from parameters import parameters
 from animals.groups import Group
 
 class Pride(Group):
