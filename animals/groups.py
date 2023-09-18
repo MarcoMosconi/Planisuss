@@ -22,7 +22,6 @@ class Group:
         return self.animals
     
     def getNumAnimal(self):
-        # print(self.cell, len(self.animals))
         return len(self.animals)
     
     def getAvSocialAttitude(self):
@@ -40,10 +39,8 @@ class Group:
 
     def addAnimal(self, key, animal):
         self.animals[key] = animal
-        # print('added with key', key, 'and lifetime', animal.lifetime, 'and energy',animal.getEnergy(), 'and cell', animal.cell)
     
     def removeAnimal(self, key):
-        # print('dead with key', key, 'and lifetime', self.animals[key].lifetime, 'and energy', self.animals[key].getEnergy(), 'and cell', self.animals[key].cell)
         self.animals.pop(key)
     
     def kill(self):
@@ -75,7 +72,6 @@ class Group:
                     born.append({'key': key1, 'energy': energy1, 'lifetime': lifetime1, 'socialAttitude': socialAtt1})
                     born.append({'key': key2, 'energy': energy2, 'lifetime': lifetime2, 'socialAttitude': socialAtt2})
         for key in dead:
-            # print('dead with', key, 'key in the right way')
             self.removeAnimal(key)
         for elm in born:
             if isinstance(animal, Erbast):
@@ -87,12 +83,6 @@ class Group:
     
     def move(self, targetGroup):
         movingAnimal = []
-        # erbastsList = []
-        # for key, animal in self.animals.items():
-        #     if isinstance(animal, Erbast):
-        #         erbastsList.append(animal)
-        # if len(erbastsList) > 0:
-        #     print(erbastsList[0].cell,'has target', targetGroup.cell)
         groupMoves = random.random() > parameters.getMoveProb()
         if groupMoves:
             targetGroup.currInCells.append(self.cell)
@@ -101,11 +91,9 @@ class Group:
             max = parameters.getMaxHerd() if isinstance(animal, Erbast) else parameters.getMaxPride()
             if ((groupMoves and animalMoves) or (not groupMoves and not animalIsStill)) and targetGroup.getNumAnimal() < max:
                 movingAnimal.append(key)
-                # print('animal is in cell', animal.cell, 'with energy', animal.getEnergy())
                 animal.moves()
                 animal.cell = targetGroup.cell
                 targetGroup.addAnimal(key, animal)
-                # print('in herd cell', targetHerd.cell)
         for key in movingAnimal:
             self.removeAnimal(key)
         return 

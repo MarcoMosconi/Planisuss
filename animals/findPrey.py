@@ -31,7 +31,6 @@ def findPrey(cellname, prevCells):
             neighbors[currCell] = vegetobs[currCell]
             currDensity = vegetobs[currCell].getDensity()
             for key in herds:
-                # print(herds[key].cell)
                 if herds[key].cell == currCell:
                     currErbast = herds[key].getNumAnimal()
                     break

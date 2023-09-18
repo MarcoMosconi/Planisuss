@@ -5,7 +5,6 @@ current_dir = os.path.dirname(__file__)
 parent_dir = os.path.abspath(os.path.join(current_dir, ".."))
 sys.path.append(parent_dir)
 
-from carvizes.setup import prides
 from erbasts.setup import herds
 import random
 

@@ -1,19 +1,3 @@
-# NUMCELLS = 10
-# CELL_PROBABILITY = 0.2
-# GROWING = 0.8
-# NUMDAYS = 50
-# MAX_DENSITY = 100
-# MAX_ENERGY = 100
-# MAX_LIFE = 30
-# MAX_HERD = 10
-# MAX_PRIDE = 10
-# ERBAST_PROBABILITY = 0.3
-# CARVIZ_PROBABILITY = 0.8
-# AGING = 1
-# NEIGHBORHOOD = 1
-# MIN_SOCIAL_ATTITUDE = 0.4
-# MOVE_PROBABILITY = 0.3  
-
 class Parameters():
     def __init__(self):
         self.Numcells = 15

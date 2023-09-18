@@ -10,8 +10,6 @@ sys.path.append(parent_dir)
 import random
 from parameters import parameters
 
-#TYPES = ["Water", "Ground"]
-
 class Cell:
     def __init__(self, x, y): #every cell has coordinates x and y and a type got from the fun setType
         self.x = x
@@ -33,8 +31,7 @@ class Cell:
             return "Ground"
         else:
             return "Water"
-        #return random.choice(TYPES) #if it's not boundary it's a random choise between the array TYPES
-    
+            
     def isGround(self):
         return self.type == "Ground"
 

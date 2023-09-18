@@ -1,7 +1,6 @@
 import sys
 import os
 
-
 current_dir = os.path.dirname(__file__)
 parent_dir = os.path.abspath(os.path.join(current_dir, ".."))
 sys.path.append(parent_dir)
@@ -16,7 +15,6 @@ def neighbors():
         prevCells = herds[key].prevCells
         _, _, killHerd = findPrey(cellname,prevCells)
         if killHerd:
-            # print('kill', cellname)
             herds[key].kill()
 
     for key in prides:
@@ -24,7 +22,6 @@ def neighbors():
         prevCells = prides[key].prevCells
         _, _, killHerd = findPrey(cellname,prevCells)
         if killHerd:
-            # print('kill', cellname)
             prides[key].kill()
     
     

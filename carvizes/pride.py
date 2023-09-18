@@ -5,10 +5,6 @@ current_dir = os.path.dirname(__file__)
 parent_dir = os.path.abspath(os.path.join(current_dir, ".."))
 sys.path.append(parent_dir)
 
-from erbasts.erbast import Erbast
-from keygenerator import generateKey
-import random
-from parameters import parameters
 from animals.groups import Group
 
 class Pride(Group):

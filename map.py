@@ -8,7 +8,6 @@ sys.path.append(parent_dir)
 import matplotlib.pyplot as plt
 from matplotlib.colors import ListedColormap
 import matplotlib.patches as pat
-import numpy as np
 from cells.setup import cells
 from parameters import parameters
 from vegetobs.setup import vegetobs
@@ -67,53 +66,28 @@ def setupMap(ax,day):
         densityLists.append(columnDensityList)
         herdLists.append(columnHerdList)
         prideLists.append(columnPrideList)
-    # A = np.asarray(mapLists)
-    # B = np.asarray(densityLists)
-    # C = np.asarray(herdLists)
-    # print(herdLists)
-
-    # print(A)
-    # print('--------------------------------')
-    # print(B)
-    # print('--------------------------------')
-    # print(C)
-
-    # fig, ax = plt.subplots()
+   
     colors = ['lightcyan', 'saddlebrown']
     cmap = ListedColormap(colors)
     mapCells = ax.imshow(mapLists, cmap=cmap, extent=[0,parameters.getNumcells(),0,parameters.getNumcells()])
-    # densityCells = ax.imshow(densityLists, extent=[0,parameters.getNumcells(),0,parameters.getNumcells()])
 
     numCell = len(mapLists)
-    # cellSize = int(parameters.getNumcells()/numCell)
 
     for y in range(numCell):
         plt.axhline(y * 1, color='black', linewidth=0.2)
     for x in range(numCell):
         plt.axvline(x * 1, color='black', linewidth=0.2)
     
-    # densityLista = [[0.7, 0.0, 0.0, 0.0, 0.0], [0.0, 0.5, 0.0, 0.9, 0.0], [0.0, 0.2, 0.4, 0.0, 0.0], [0.0, 0.0, 0.0, 0.0, 0.0], [0.0, 0.0, 0.0, 0.0, 0.8]]
-
-    # for a in animations:
-    #     a.remove()
 
     for row, rowList in enumerate(mapLists):
         for col, _ in enumerate(rowList):
             densityValue = densityLists[row][col]
-            # print('map value', mapLists[row][col], 'and density value', densityValue)
-            # if densityValue > 0:
             square = pat.Rectangle((col, parameters.getNumcells()-1-row), densityValue, densityValue, color = 'green')
             animations.append(square)
             ax.add_patch(square)
             herd = herdLists[row][col]
             if herd != 0:
-                # totErb = herd.getNumAnimal()
-                # erbColor = 0 if totErb == 0 else herd.getTotalEnergy()/(parameters.getMaxEnergy()*totErb)
-                # circle = pat.Circle((col+0.5, parameters.getNumcells()-0.5-row), 0.5*totErb/parameters.getMaxHerd(), color = setErbastColor(erbColor))
-                # animations.append(circle)
-                # ax.add_patch(circle)
                 for key in herd.animals:
-                    # print((herd.animals[key].getEnergy()/parameters.getMaxEnergy()))
                     circle = pat.Circle((col+random.uniform(0.15,0.85), parameters.getNumcells()-random.uniform(0.15,0.85)-row), 0.15, color = setErbastColor(herd.animals[key].getEnergy()/parameters.getMaxEnergy()))
                     ax.add_patch(circle)
             pride = prideLists[row][col]
@@ -121,15 +95,9 @@ def setupMap(ax,day):
                 for key in pride.animals:
                     triangle = pat.RegularPolygon((col+random.uniform(0.15,0.85), parameters.getNumcells()-random.uniform(0.15,0.85)-row), 3, 0.15, 0.0, color = setCarvizColor(pride.animals[key].getEnergy()/parameters.getMaxEnergy()))
                     ax.add_patch(triangle)
-        # print('------------------------')
-
-    # for a in animations:
-    #     ax.add_patch(a)
 
 
     plt.tick_params(left=False, bottom=False, labelleft=False, labelbottom=False)
-
-    
 
     return 
     

@@ -38,29 +38,6 @@ def close():
     startButton.pack(side='left', padx=100, pady=5)
     settingButton.pack(side='right', padx=100, pady=5)
 
-# def pauseSimulation():
-#     pauseButton.forget()
-#     resumeButton.pack()
-#     global isRunning
-#     isRunning = False
-
-# def resumeSimulation():
-#     resumeButton.forget()
-#     pauseButton.pack()
-#     global isRunning
-#     isRunning = True
-    
-# def speedupSimulation():
-#     global pause
-#     if pause > 0.01:
-#         pause = pause/2
-#     return pause
-
-# def slowdownSimulation():
-#     global pause 
-#     pause = pause*2
-#     return pause
-
 def information():
     html = f"""
         <div style="background-color: #cdcdcd;">

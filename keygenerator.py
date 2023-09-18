@@ -11,5 +11,4 @@ def generateKey():
 
     res = ''.join(random.choices(string.ascii_uppercase +
 							string.digits, k=N))
-    # print('born with key', res)
     return res

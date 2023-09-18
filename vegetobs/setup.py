@@ -7,8 +7,6 @@ current_dir = os.path.dirname(__file__)
 parent_dir = os.path.abspath(os.path.join(current_dir, ".."))
 sys.path.append(parent_dir)
 
-# sys.path[0] = "c:\\Users\\marco\\OneDrive\\Desktop\\Planisuss\\"
-
 from cells.setup import cells
 from vegetobs.vegetob import Vegetob
 
