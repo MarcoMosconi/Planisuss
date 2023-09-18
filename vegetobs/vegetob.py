@@ -32,7 +32,7 @@ class Vegetob:
             self.density -= value
             return value
         else:
-            availableDensity = math.ceil(self.density)
+            availableDensity = math.ceil(self.density)  #in case it is not an integer
             self.density = 0
             return availableDensity
 

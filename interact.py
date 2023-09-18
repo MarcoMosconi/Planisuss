@@ -3,6 +3,8 @@ from parameters import parameters
 from tkinter import simpledialog
 from tkhtmlview import HTMLLabel
 
+#buttons to interactively change the parameters
+
 root1 = tk.Tk()
 root1.geometry("700x600")
 root1.title('Menu')

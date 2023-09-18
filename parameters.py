@@ -1,3 +1,5 @@
+#class of the parameters which can be changed in the home screen
+
 class Parameters():
     def __init__(self):
         self.Numcells = 15

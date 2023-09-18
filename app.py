@@ -19,6 +19,8 @@ totalDensities = []
 totalNumberErbasts = []
 totalNumberCarvizes = []
 
+#initial setup
+
 def setup():
     totalDays.append(0)
     setupCells()
@@ -28,6 +30,8 @@ def setup():
     totalNumberErbasts.append(totalNumberErbast)
     totalNumberCarviz = setupPrides()
     totalNumberCarvizes.append(totalNumberCarviz)
+
+#for loop with plotting of the simulation and at the end of the plots
 
 isRunning = True
 pause = 0.04
@@ -39,7 +43,6 @@ def main():
         while not isRunning:
             root1.update()
             time.sleep(0.5)  
-        print('--------------DAY', day)
         totalDays.append(day)
         growing()
         movement()
@@ -69,6 +72,8 @@ def main():
 def run():
     setup()
     main()
+
+#buttons which actively influence the progress of the simulation 
 
 def startSimulation():
     info.forget()

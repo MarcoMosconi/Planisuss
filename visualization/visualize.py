@@ -9,6 +9,8 @@ from erbasts.setup import herds
 from vegetobs.setup import vegetobs
 from carvizes.setup import prides
 
+#functions to get the data which are going to be represented in the plots at the end of the simulation
+
 def visualize_E():
     totalNumberErbast = 0
     for key in herds:

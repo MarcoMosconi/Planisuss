@@ -15,7 +15,7 @@ from erbasts.setup import herds
 from carvizes.setup import prides
 import random
 
-animations = []
+#map where the daily status of the three species is represented
 
 def setColor(r,g,b):
     return [r,g,b]
@@ -29,10 +29,13 @@ def setCarvizColor(c):
 def setupMap(ax,day):
     plt.cla()
     ax.set_title(f'Day {day}')
+
+    #create one matrix with the Ground/Water cells, one with the density of the vegetobs, one with the energy of the erbasts 
+    # and one with the energy of the carvizes
     cellList = []
     for cellname in cells:
         cellList.append(cells[cellname])
-        
+
     mapLists = []
     densityLists = []
     herdLists = []
@@ -66,24 +69,24 @@ def setupMap(ax,day):
         densityLists.append(columnDensityList)
         herdLists.append(columnHerdList)
         prideLists.append(columnPrideList)
-   
+    
+    #background map with Ground/Water cells
     colors = ['lightcyan', 'saddlebrown']
     cmap = ListedColormap(colors)
     mapCells = ax.imshow(mapLists, cmap=cmap, extent=[0,parameters.getNumcells(),0,parameters.getNumcells()])
 
     numCell = len(mapLists)
-
+    #add the axis
     for y in range(numCell):
         plt.axhline(y * 1, color='black', linewidth=0.2)
     for x in range(numCell):
         plt.axvline(x * 1, color='black', linewidth=0.2)
     
-
+    #add to the map the vegetobs (size based on density), the erbasts (color based on energy) and the carvizes (color based on energy)
     for row, rowList in enumerate(mapLists):
         for col, _ in enumerate(rowList):
             densityValue = densityLists[row][col]
             square = pat.Rectangle((col, parameters.getNumcells()-1-row), densityValue, densityValue, color = 'green')
-            animations.append(square)
             ax.add_patch(square)
             herd = herdLists[row][col]
             if herd != 0:

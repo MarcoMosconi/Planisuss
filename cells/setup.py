@@ -23,8 +23,6 @@ def setupCells():
             c = Cell(i, j)                      #the coordinates are attributed to member of the class Cell
             cells[cellname] = c                 #cellname is the key given to the dictionary cells and the value is the corresponding cell
 
-    # cells["c_3_7"].getCoordinates()
-
     for i in range(0, parameters.getNumcells()):      #this is the grid with water/ground cells
         ln = ''
         for j in range(0, parameters.getNumcells()):
