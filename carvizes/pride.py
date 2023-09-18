@@ -40,7 +40,7 @@ class Pride(Group):
         for key in self.animals:
             self.animals[key].cell = targetPride.cell
             targetPride.addAnimal(key, self.animals[key])
-        for cell in self.prevCells:
+        for cell in self.currInCells:
             targetPride.currInCells.append(cell)
     
     def winFight(self):

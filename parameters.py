@@ -16,10 +16,10 @@
 
 class Parameters():
     def __init__(self):
-        self.Numcells = 10
+        self.Numcells = 15
         self.Cell_Probability = 0.2
         self.Growing = 0.8
-        self.Numdays = 50
+        self.Numdays = 250
         self.Max_Density = 100
         self.Max_Energy = 100
         self.Max_Life = 30

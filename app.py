@@ -17,7 +17,7 @@ import time
 from interact import *
 import sys
 
-seed(1)
+# seed(1)
 
 totalDays = []
 totalDensities = []
@@ -44,7 +44,7 @@ pause = 0.04
 
 def main():
     # fig, ((ax, bx),(cx,dx)) = plt.subplots(2,2)
-    fig, dx = plt.subplots()
+    fig, dx = plt.subplots(figsize=(6,6))
     fig.suptitle("Map")
     # ax.set_title("Total Daily Vegetob Density")
     # bx.set_title("Total Daily Erbast Number")
@@ -73,12 +73,12 @@ def main():
         root1.update()
         # figManager = plt.get_current_fig_manager()
         # figManager.full_screen_toggle()
-        print(pause)
+        # print(pause)
         plt.pause(pause)
     plt.show()
     root1.destroy()
 
-    fig, (ax,bx,cx) = plt.subplots(3,1)
+    fig, (ax,bx,cx) = plt.subplots(3,1, figsize=(8,6))
     ax.set_title("Total Daily Vegetob Density")
     bx.set_title("Total Daily Erbast Number")
     cx.set_title("Total Daily Carviz Number")
