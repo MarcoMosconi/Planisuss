@@ -20,11 +20,11 @@ def setupHerds():
         if cells[cellname].isGround():
             key = generateKey()
             h = Herd(cellname)
-            herds[key] = h           
+            herds[key] = h           #random string as key and herd as value
             if random.random() > parameters.getErbastProb():
                 erbkey = generateKey()
                 e = Erbast(cellname)
-                h.addAnimal(erbkey, e)
+                h.addAnimal(erbkey, e)  #the erbast is added inside the dictionary "animals" of the herd
                 totalNumberErbast += 1
     return totalNumberErbast
 

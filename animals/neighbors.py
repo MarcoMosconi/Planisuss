@@ -9,6 +9,10 @@ from animals.findPrey import findPrey
 from erbasts.setup import herds
 from carvizes.setup import prides
 
+#iterates through herds and prides and if killHerd is True, hence
+#all the ground cells they have next to them are full of vegetobs, 
+#the animals inside the group die
+
 def neighbors():
     for key in herds:
         cellname = herds[key].cell

@@ -13,15 +13,15 @@ class Pride(Group):
 
     def eat(self, availableEnergy):
         keys = self.sortAnimals()
-        indEnergy = availableEnergy//self.getNumAnimal()
-        remainingEnergy = availableEnergy - indEnergy*self.getNumAnimal()
-        if indEnergy < 1:
+        indEnergy = availableEnergy//self.getNumAnimal()        #computes the energy for each carviz
+        remainingEnergy = availableEnergy - indEnergy*self.getNumAnimal()      #and the remaining energy
+        if indEnergy < 1:       #if there is less than 1 energy for each carviz it is distributed until it ends
             for key in keys:
                 self.animals[key].eats(1)
                 availableEnergy -= 1
                 if availableEnergy <= 0:
                     break
-        else:
+        else:                   #otherwise the 
             for key in keys:
                 self.animals[key].eats(indEnergy)
             if remainingEnergy > 0:

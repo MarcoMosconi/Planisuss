@@ -19,5 +19,5 @@ class Erbast(Animal):
             if self.energy < parameters.getMaxEnergy():
                 self.energy += 1
         else:
-            self.moved = False   
+            self.moved = False   #if it moved the flag is set back to False for the next day
 

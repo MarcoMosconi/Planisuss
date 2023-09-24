@@ -102,12 +102,14 @@ def speedupSimulation():
     global pause
     if pause > 0.01:
         pause = pause/2
-    else:
-        speedupButton['state'] = "disabled"
+        print('pause:',pause)
+        if pause == 0.01:
+            speedupButton['state'] = "disabled"
 
 def slowdownSimulation():
     global pause 
     pause = pause*2
+    print('pause:',pause)
     speedupButton['state'] = "active"
 
 startButton['command'] = startSimulation

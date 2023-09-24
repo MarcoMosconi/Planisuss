@@ -17,7 +17,7 @@ def struggle():
             pridestoRemove = []
             for key in prides:
                 if prides[key].cell == cellname:
-                    joiningPrides.append(key)
+                    joiningPrides.append(key)           #finds all the prides belonging to the cell and adds it to the list
             joiningPrides.sort(key=lambda x: prides[key].getNumAnimal())
             if len(joiningPrides) > 1:
                 for key in joiningPrides:
@@ -26,7 +26,7 @@ def struggle():
                         pridestoRemove.append(key)
                 for key in pridestoRemove:
                     joiningPrides.remove(key)
-            while len(joiningPrides) > 1:
+            while len(joiningPrides) > 1:       #takes the first two prides and evaluates if they're joining or fighting
                 pride1 = prides[joiningPrides[0]]
                 pride2 = prides[joiningPrides[1]]
                 avSocialAtt1 = pride1.getAvSocialAttitude()
@@ -42,7 +42,7 @@ def struggle():
         pride= prides[key]
         pride.prevCells = []        
         for cell in pride.currInCells:
-            pride.prevCells.append(cell)
+            pride.prevCells.append(cell)    #put the cells of the new erbasts in prevCells so the herd won't move there the next day
         pride.currInCells = []
 
                     

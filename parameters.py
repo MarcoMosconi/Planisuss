@@ -2,7 +2,7 @@
 
 class Parameters():
     def __init__(self):
-        self.Numcells = 15
+        self.Numcells = 20
         self.Cell_Probability = 0.2
         self.Growing = 0.8
         self.Numdays = 250

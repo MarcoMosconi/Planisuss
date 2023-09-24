@@ -31,7 +31,7 @@ class Animal:
     def getSocialAttitude(self):
         return self.socialAttitude
     
-    def grows(self):
+    def grows(self):    #increases the age and enentually decreases the energy and returns isAlive = False if the animal dies
         isAlive = True
         self.age += 1
         if self.age != 0 and self.age%10 == 0:
@@ -47,10 +47,10 @@ class Animal:
     def willMove(self):
         moves = False
         isStill = True
-        if self.moved:
+        if self.moved:      #in case the animal moved it cannot move again, so moves is False and isStill is True
             return moves, isStill
-        if self.getSocialAttitude() > parameters.getMinSocAtt() and random.randint(0,parameters.getMaxEnergy()) <= self.getEnergy():
+        if self.getSocialAttitude() > parameters.getMinSocAtt() and random.randint(0,parameters.getMaxEnergy()) <= self.getEnergy(): #case in which the animal follows the moving social group
             moves = True
-        if self.getSocialAttitude() <= parameters.getMinSocAtt() and random.randint(0,parameters.getMaxEnergy()) <= self.getEnergy():
+        if self.getSocialAttitude() <= parameters.getMinSocAtt() and random.randint(0,parameters.getMaxEnergy()) <= self.getEnergy(): #case in which the animal moves leaving the still social group
             isStill = False   
         return moves, isStill

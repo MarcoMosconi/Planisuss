@@ -57,10 +57,10 @@ class Group:
         
         for key, animal in self.animals.items():
             isAlive, energy, lifetime = animal.grows()
-            if not isAlive:
+            if not isAlive: #is the animal is dead it is put in the list to be later removed from the dictionary "animals"
                 dead.append(key)
                 max = parameters.getMaxHerd()-1 if isinstance(animal, Erbast) else parameters.getMaxPride()-1
-                if self.getNumAnimal() < max and energy > 0:
+                if self.getNumAnimal() < max and energy > 0:    #if it is dead because its age reached its lifetime the offspring is generated
                     energy1 = random.randint(0,energy)
                     energy2 = energy - energy1
                     lifetime1 = random.randint(0, min(parameters.getMaxLife(), 2*lifetime))
@@ -84,16 +84,16 @@ class Group:
     def move(self, targetGroup):
         movingAnimal = []
         groupMoves = random.random() > parameters.getMoveProb()
-        if groupMoves:
+        if groupMoves:  #it the group moves its cell is added to the target group list of the cells which are currently in 
             targetGroup.currInCells.append(self.cell)
         for key, animal in self.animals.items():
             animalMoves, animalIsStill = animal.willMove()
             max = parameters.getMaxHerd() if isinstance(animal, Erbast) else parameters.getMaxPride()
-            if ((groupMoves and animalMoves) or (not groupMoves and not animalIsStill)) and targetGroup.getNumAnimal() < max:
-                movingAnimal.append(key)
+            if ((groupMoves and animalMoves) or (not groupMoves and not animalIsStill)) and targetGroup.getNumAnimal() < max: #either the group moves and the animal moves
+                movingAnimal.append(key)                                                                                      #or the group is still and the animal moves
                 animal.moves()
                 animal.cell = targetGroup.cell
-                targetGroup.addAnimal(key, animal)
-        for key in movingAnimal:
+                targetGroup.addAnimal(key, animal)      #the animal moves, its energy is decreased and it is added to the dictionary "animals" of the target group
+        for key in movingAnimal:                        #the animal is removed from the current dictionary
             self.removeAnimal(key)
         return 

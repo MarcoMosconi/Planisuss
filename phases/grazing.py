@@ -14,6 +14,6 @@ def grazing():
         cellname = herd.cell
         num = herd.getNumAnimal()
         if num > 0:
-            availableEnergy = vegetobs[cellname].graze(num)
-            herd.graze(availableEnergy)
+            availableEnergy = vegetobs[cellname].graze(num)     #it the herd is inhabited the available energy is taken from the vegetob
+            herd.graze(availableEnergy)                         #and given to the herd to be distributed among its components
     return 

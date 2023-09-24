@@ -18,17 +18,17 @@ def movement():
         prevCells = herd.prevCells
         num = herd.getNumAnimal()
         if num > 0:
-            targetCellname, _, _ = findPrey(cellname, prevCells)
+            targetCellname, _, _ = findPrey(cellname, prevCells)    #finds the target cell
             if targetCellname != cellname:
                 for key in herds:
                     if targetCellname == herds[key].cell:
-                        herd.move(herds[key])
+                        herd.move(herds[key])               #move the herd's erbasts to the target cell
                         break
     for key in herds:
         herd= herds[key]
         herd.prevCells = []
         for cell in herd.currInCells:
-            herd.prevCells.append(cell)
+            herd.prevCells.append(cell)     #put the cells of the new erbasts in prevCells so the herd won't move there the next day
         herd.currInCells = []
 
     
@@ -39,13 +39,13 @@ def movement():
         prevCells = pride.prevCells
         num = pride.getNumAnimal()
         if num > 0:
-            _, targetCellname, _ = findPrey(cellname, prevCells)
+            _, targetCellname, _ = findPrey(cellname, prevCells)       #find the target cell
             if targetCellname != cellname:
-                targetPride = Pride(targetCellname)
+                targetPride = Pride(targetCellname)                #creates new pride where to move the carvizes
                 newPrides.append(targetPride)
                 pride.move(targetPride)
     for newPride in newPrides:
         if newPride.getNumAnimal() > 0:
             prideKey = generateKey()
-            prides[prideKey] = newPride
+            prides[prideKey] = newPride             #adds the new prides to the dictionary "prides"
     return 

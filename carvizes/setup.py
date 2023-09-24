@@ -18,12 +18,12 @@ def setupPrides():
     totalNumberCarvizes = 0
     for cellname in cells:
         if cells[cellname].isGround():
-            key = generateKey()
+            key = generateKey()     
             p = Pride(cellname)
-            prides[key] = p           
+            prides[key] = p         #random string as key and pride as value     
             if random.random() > parameters.getCarvizProb():
                 carkey = generateKey()
                 e = Carviz(cellname)
-                p.addAnimal(carkey, e)
+                p.addAnimal(carkey, e)         #the erbast is added inside the dictionary "animals" of the pride
                 totalNumberCarvizes += 1
     return totalNumberCarvizes

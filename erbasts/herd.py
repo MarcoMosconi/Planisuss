@@ -15,7 +15,7 @@ class Herd(Group):
         keys = self.sortAnimals()
         for key in keys:
             if availableEnergy <= 0:
-                self.animals[key].socialAttitude -= 1
+                self.animals[key].socialAttitude -= 1   #if there's not enough energy for all the Erbast the social attitude of the ones not eating is decreased
             else:
                 self.animals[key].grazes()
                 availableEnergy -= 1
